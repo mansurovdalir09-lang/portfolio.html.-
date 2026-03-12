@@ -194,8 +194,8 @@ animation: fadeIn 1.5s 1.5s both;
 .scroll-line { width:40px;height:1px;background:currentColor; animation:scrollAnim 2s ease-in-out infinite; }
 @keyframes scrollAnim { 0%{width:0;opacity:0}50%{width:40px;opacity:1}100%{width:0;opacity:0;transform:translateX(40px)} }
 
-@keyframes fadeIn { from{opacity:0}to{opacity:1} }
-@keyframes slideUp { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{transform:translateY(12px)}to{transform:translateY(0)} }
+@keyframes slideUp { from{transform:translateY(32px)}to{transform:translateY(0)} }
 
 /* ── PROJECTS I BUILD ── */
 #what-i-do { background: var(--ink2); }
@@ -936,7 +936,7 @@ footer { padding:24px; }
   letter-spacing:0.28em !important;
   padding:6px 13px !important;
   margin-bottom:52px !important;
-  animation:fadeIn 1s 0.3s both, heroTagPulse 5s 2s ease-in-out infinite !important;
+  animation:fadeIn 1s 0.3s both, heroTagPulse 5s 2s ease-in-out infinite;
 }
 @keyframes heroTagPulse {
   0%,100% { border-color:rgba(212,168,67,0.25); }
@@ -998,7 +998,7 @@ footer { padding:24px; }
 .hero-sub,
 .hero-ctas,
 .hero-stats,
-.hero-scroll { opacity: 1 !important; }
+.hero-scroll { opacity: 1 !important; visibility: visible !important; }
 
 /* Arabic overrides (restore Arabic-specific sizes) */
 .lang-ar .hero-h1 { font-size:clamp(46px,7vw,88px) !important; line-height:1.25 !important; }
