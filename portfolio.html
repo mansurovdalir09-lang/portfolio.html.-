@@ -1296,7 +1296,7 @@ function step(t){if(!startTime)startTime=t;let p=Math.min((t-startTime)/dur,1);l
 requestAnimationFrame(step);
 }
 const counters=document.querySelectorAll(’[data-count]’);
-const countObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animCount(e.target,parseInt(e.target.dataset.count));countObs.unobserve(e.target);}});},{threshold:0.5});
+const countObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animCount(e.target,parseInt(e.target.dataset.count));countObs.unobserve(e.target);}});},{threshold:0.1});
 counters.forEach(c=>countObs.observe(c));
 
 // ── INTERSECTION REVEAL ──
