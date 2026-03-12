@@ -1081,11 +1081,11 @@ footer { padding:24px; }
       <div class="calc-result">
         <div>
           <div class="calc-price-label" data-i18n="calc.priceLabel">Стоимость проекта</div>
-          <div class="calc-price" id="calcPrice">50 000 ₽</div>
+          <div class="calc-price" id="calcPrice" data-i18n="calc.priceDefault">50 000 ₽</div>
         </div>
         <div style="text-align:right;">
           <div class="calc-price-label" style="text-align:right;" data-i18n="calc.timeLabel">Сроки</div>
-          <div class="calc-time" id="calcTime">~10 дней</div>
+          <div class="calc-time" id="calcTime" data-i18n="calc.timeDefault">~10 дней</div>
         </div>
         <a href="https://wa.me/79285002070" class="btn-gold" style="margin-left:auto;" data-i18n="calc.btn">Обсудить проект →</a>
       </div>
@@ -1415,8 +1415,9 @@ const extras=Array.from(document.querySelectorAll(’#calcExtras .calc-toggle.on
 const pageBonus=Math.max(0,(pages-5))*5000;
 const total=basePrice+pageBonus+extras;
 const days=baseTime+Math.max(0,(pages-5))*2+Math.round(extras/8000);
+const daysLabel = getNestedValue(CONTENT[currentLang], ‘calc.days’) || ‘дней’;
 priceEl.textContent=total.toLocaleString(‘ru-RU’)+’ ₽’;
-timeEl.textContent=’~’+days+’ дней’;
+timeEl.textContent=’~’+days+’ ‘+daysLabel;
 }
 
 pageSlider.addEventListener(‘input’,function(){pageLabel.textContent=this.value;updateCalc();});
@@ -1427,7 +1428,8 @@ document.querySelectorAll(’#calcType .calc-toggle’).forEach(b=>{b.classList.
 this.classList.add(‘on’);
 basePrice=parseInt(this.dataset.base);
 baseTime=parseInt(this.dataset.time);
-document.getElementById(‘calcTypeLabel’).textContent=this.textContent;
+const calcTypeLabelEl2 = document.getElementById(‘calcTypeLabel’);
+if(calcTypeLabelEl2) calcTypeLabelEl2.textContent=this.textContent;
 updateCalc();
 });
 });
@@ -1594,8 +1596,9 @@ t8:‘Тестирование и запуск’, d8:‘Финальный че
 },
 calc:{ label:‘Стоимость проекта’, h2:‘РАССЧИТАЙТЕ<br><span style="color:var(--gold);">СВОЙ САЙТ</span>’,
 typeLabel:‘Тип проекта’, pageLabel:‘Количество страниц’, extrasLabel:‘Дополнительные услуги’,
-priceLabel:‘Стоимость проекта’, timeLabel:‘Сроки’, btn:‘Обсудить проект →’,
-type1:‘Лендинг’, type2:‘Интернет-магазин’, type3:‘Корпоративный сайт’, type4:‘Двуязычный сайт AR/RU’,
+priceLabel:’Стоимость проекта’, timeLabel:’Сроки’, btn:’Обсудить проект →’,
+days:’дней’, priceDefault:’50 000 ₽’, timeDefault:’~10 дней’,
+type1:’Лендинг’, type2:’Интернет-магазин’, type3:’Корпоративный сайт’, type4:’Двуязычный сайт AR/RU’,
 e1:’+Анимации и интерактив’, e2:’+Подключение оплаты’, e3:’+Настройка Яндекс.Метрика’,
 e4:’+SEO-оптимизация’, e5:’+Контент (тексты + фото)’, e6:’+Домен + хостинг 1 год’, e7:’+Интеграция CRM’
 },
@@ -1668,8 +1671,9 @@ t8:‘الاختبار والإطلاق’, d8:‘قائمة تحقُّق شام
 },
 calc:{ label:‘تكلفة المشروع’, h2:‘احسب<br><span style="color:var(--gold);">موقعك</span>’,
 typeLabel:‘نوع المشروع’, pageLabel:‘عدد الصفحات’, extrasLabel:‘خدمات إضافية’,
-priceLabel:‘تكلفة المشروع’, timeLabel:‘المدة الزمنية’, btn:‘ناقش مشروعك ←’,
-type1:‘صفحة هبوط’, type2:‘متجر إلكتروني’, type3:‘موقع شركة’, type4:‘موقع ثنائي اللغة AR/RU’,
+priceLabel:’تكلفة المشروع’, timeLabel:’المدة الزمنية’, btn:’ناقش مشروعك ←’,
+days:’يوم’, priceDefault:’50 000 ₽’, timeDefault:’~10 يوم’,
+type1:’صفحة هبوط’, type2:’متجر إلكتروني’, type3:’موقع شركة’, type4:’موقع ثنائي اللغة AR/RU’,
 e1:’+رسوم متحرِّكة وتفاعل’, e2:’+ربط بوابة الدفع’, e3:’+إعداد التحليلات’,
 e4:’+تحسين محركات البحث SEO’, e5:’+المحتوى (نصوص + صور)’, e6:’+نطاق + استضافة سنة’, e7:’+تكامل CRM’
 },
