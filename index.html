@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Далир Мансуров — Веб-дизайн и разработка сайтов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=DM+Sans:wght@300;400;500&family=Noto+Naskh+Arabic:wght@400;600;700&family=Cairo:wght@300;400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:   #0A0A0F;
+  --ink2:  #12121A;
+  --ink3:  #1C1C28;
+  --gold:  #D4A843;
+  --gold2: #F0C96A;
+  --sand:  #F0EDE8;
+  --sand2: #BFB9AF;
+  --rust:  #8B3A2F;
+  --sage:  #2A4D3A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+html{overflow-x:hidden;}body{background:var(--ink);color:var(--sand);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--ink);}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:rgba(10,10,15,0.95);backdrop-filter:blur(8px);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--sand2);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.lang-switcher{display:flex;align-items:center;gap:8px;}
+.lang-btn{background:none;border:none;color:var(--sand2);font-size:12px;letter-spacing:0.12em;cursor:pointer;padding:4px 8px;transition:color 0.2s;}
+.lang-btn:hover,.lang-btn.active{color:var(--gold);}
+.lang-sep{color:var(--sand2);opacity:0.3;}
+.nav-cta{padding:10px 22px;border:1px solid rgba(212,168,67,0.4);color:var(--gold);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+.nav-cta:hover{background:rgba(212,168,67,0.1);}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.burger span{display:block;width:22px;height:1px;background:var(--sand2);}
+
+/* HERO */
+#hero{min-height:100vh;padding:0 48px;display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(212,168,67,0.06) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 10% 80%,rgba(26,46,74,0.3) 0%,transparent 60%);}
+.hero-grid{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;background-image:linear-gradient(rgba(212,168,67,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,168,67,0.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 30%,transparent 80%);}
+.hero-content{position:relative;z-index:2;max-width:1200px;width:100%;margin:0 auto;}
+.hero-tag{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;margin-bottom:48px;border:1px solid rgba(212,168,67,0.25);background:rgba(212,168,67,0.05);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,9vw,130px);line-height:0.92;letter-spacing:0.02em;color:var(--sand);margin-bottom:32px;}
+.hero-h1 em{color:var(--gold);font-style:normal;}
+.hero-h1 .outline{-webkit-text-stroke:1px rgba(240,237,232,0.3);color:transparent;}
+.hero-sub{max-width:540px;font-size:16px;font-weight:300;line-height:1.8;color:var(--sand2);}
+.hero-sub strong{color:var(--sand);font-weight:400;}
+.hero-ctas{display:flex;gap:16px;align-items:center;margin-top:48px;}
+.btn-gold{padding:14px 32px;background:var(--gold);color:var(--ink);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all 0.2s;display:inline-block;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-ghost{padding:14px 32px;border:1px solid rgba(240,237,232,0.2);color:var(--sand2);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;display:inline-block;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.hero-stats{display:flex;gap:48px;margin-top:80px;padding-top:40px;border-top:1px solid rgba(240,237,232,0.08);}
+.hero-stat-n{font-family:'Bebas Neue',sans-serif;font-size:54px;color:var(--gold);line-height:1;display:inline-block;}
+.hero-stat-l{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--sand2);margin-top:4px;}
+
+/* SECTIONS */
+section{padding:120px 48px;}
+.container{max-width:1200px;margin:0 auto;}
+.label{font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:36px;display:flex;align-items:center;gap:12px;}
+.label::before{content:'';width:32px;height:1px;background:var(--gold);opacity:0.5;}
+.section-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);color:var(--sand);line-height:1;margin-bottom:52px;}
+
+/* MARQUEE */
+.marquee-section{background:var(--gold);padding:12px 0;overflow:hidden;}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 25s linear infinite;width:max-content;}
+.marquee-item{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.22em;color:var(--ink);padding:0 20px;}
+.marquee-sep{color:rgba(10,10,15,0.3);padding:0 4px;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SERVICES */
+#what-i-do{background:var(--ink2);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,168,67,0.08);border:1px solid rgba(212,168,67,0.08);}
+.service-card{padding:40px 36px;background:var(--ink2);transition:background 0.3s,transform 0.3s;}
+.service-card:hover{background:rgba(212,168,67,0.03);transform:translateY(-4px);}
+.service-num{font-family:'Bebas Neue',serif;font-size:56px;color:rgba(212,168,67,0.15);line-height:1;}
+.service-title{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:500;margin:12px 0 8px;color:var(--sand);}
+.service-desc{font-size:13px;color:var(--sand2);line-height:1.75;}
+
+/* NO PROJECTS / SHREDDER */
+#no-projects{background:var(--ink);border-top:1px solid rgba(139,58,47,0.2);}
+.shredder-header{text-align:center;margin-bottom:64px;}
+.big-no{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,8vw,100px);color:var(--rust);letter-spacing:0.05em;}
+.reject-grid{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:48px;}
+.reject-item{padding:12px 24px;background:rgba(139,58,47,0.08);border:1px solid rgba(139,58,47,0.25);color:var(--sand2);font-size:13px;cursor:pointer;transition:all 0.2s;user-select:none;position:relative;}
+.reject-item:hover{background:rgba(139,58,47,0.15);border-color:rgba(139,58,47,0.5);}
+.reject-item.shredded{opacity:0.2;text-decoration:line-through;pointer-events:none;}
+#shredder-canvas{width:100%;max-width:800px;display:block;margin:0 auto;border-radius:4px;}
+
+/* METHODOLOGY */
+#methodology{background:var(--ink2);}
+.method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(212,168,67,0.06);}
+.method-step{padding:40px 36px;background:var(--ink2);border-left:2px solid transparent;transition:border-color 0.3s;}
+.method-step:hover{border-left-color:var(--gold);}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:rgba(212,168,67,0.15);line-height:1;}
+.step-icon{font-size:28px;margin:8px 0;}
+.step-title{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;color:var(--sand);margin-bottom:8px;}
+.step-desc{font-size:13px;color:var(--sand2);line-height:1.75;}
+
+/* CALCULATOR */
+#calculator{background:var(--ink);}
+.calc-wrap{background:var(--ink2);border:1px solid rgba(212,168,67,0.1);padding:48px;margin-top:48px;}
+.calc-row{margin-bottom:40px;}
+.calc-label{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand2);margin-bottom:16px;}
+.calc-toggles{display:flex;flex-wrap:wrap;gap:8px;}
+.calc-toggle{padding:10px 20px;border:1px solid rgba(240,237,232,0.1);color:var(--sand2);font-size:12px;cursor:pointer;transition:all 0.2s;user-select:none;}
+.calc-toggle:hover{border-color:rgba(212,168,67,0.4);color:var(--gold);}
+.calc-toggle.on{background:rgba(212,168,67,0.1);border-color:var(--gold);color:var(--gold);}
+input[type=range]{width:100%;accent-color:var(--gold);margin-top:12px;}
+.calc-result{display:flex;align-items:center;gap:48px;padding-top:40px;border-top:1px solid rgba(212,168,67,0.1);flex-wrap:wrap;}
+.calc-price-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand2);}
+.calc-price{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--gold);line-height:1;}
+.calc-time{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--sand2);line-height:1;}
+
+/* PORTFOLIO */
+#portfolio{background:var(--ink2);}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,168,67,0.06);margin-top:48px;}
+.project-card{position:relative;overflow:hidden;aspect-ratio:4/5;cursor:pointer;background:var(--ink3);}
+.project-always{position:absolute;bottom:0;left:0;right:0;padding:28px;z-index:2;}
+.project-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:6px;}
+.project-name{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--sand);}
+.project-thumb{position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);font-size:80px;opacity:0.15;transition:opacity 0.3s,transform 0.3s;}
+.project-card:hover .project-thumb{opacity:0.25;transform:translate(-50%,-55%) scale(1.1);}
+.project-info{position:absolute;bottom:0;left:0;right:0;padding:28px;background:linear-gradient(to top,rgba(10,10,15,0.95),transparent);transform:translateY(30%);opacity:0;transition:all 0.4s;z-index:3;}
+.project-card:hover .project-info{transform:translateY(0);opacity:1;}
+.project-detail{font-size:13px;color:var(--sand2);line-height:1.5;margin-bottom:12px;}
+.project-link{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);}
+
+/* ABOUT */
+#about{background:var(--ink);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-top:64px;}
+.about-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(68px,9vw,128px);color:var(--sand);line-height:0.92;margin-bottom:40px;}
+.about-h2 em{color:var(--gold);font-style:italic;}
+.about-text{font-size:15px;line-height:1.5;color:var(--sand2);margin-bottom:20px;}
+.skills-list{margin-top:40px;}
+.skill-item{padding:16px 0;border-bottom:1px solid rgba(240,237,232,0.06);}
+.skill-name{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--sand2);margin-bottom:8px;display:flex;justify-content:space-between;}
+.skill-track{height:2px;background:rgba(240,237,232,0.08);position:relative;}
+.skill-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:width 1.2s ease;}
+.stack-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px;}
+.stack-tag{padding:6px 14px;border:1px solid rgba(212,168,67,0.2);color:var(--sand2);font-size:11px;letter-spacing:0.12em;}
+
+/* CTA */
+#cta{background:var(--ink2);text-align:center;}
+.cta-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,96px);color:var(--sand);line-height:0.95;margin-bottom:32px;}
+.cta-h2 em{color:var(--gold);font-style:italic;}
+.cta-sub{font-size:15px;color:var(--sand2);max-width:480px;margin:0 auto 48px;}
+.cta-contacts{display:flex;justify-content:center;gap:32px;margin-top:24px;flex-wrap:wrap;}
+.cta-contact{font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--sand2);text-decoration:none;transition:color 0.2s;}
+.cta-contact:hover{color:var(--gold);}
+
+/* FOOTER */
+footer{padding:32px 48px;border-top:1px solid rgba(240,237,232,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-copy{font-size:12px;color:var(--sand2);opacity:0.5;}
+.footer-made{font-size:11px;color:var(--sand2);opacity:0.3;letter-spacing:0.1em;}
+
+/* MODAL */
+#modal-overlay{position:fixed;inset:0;z-index:9999;overflow-y:auto;display:none;padding:40px 24px;}
+#modal-overlay.open{display:block;}
+.modal-close{position:fixed;top:24px;right:32px;font-size:24px;cursor:pointer;color:var(--sand2);background:none;border:none;z-index:10001;transition:color 0.2s;}
+.modal-close:hover{color:var(--gold);}
+.modal-inner{max-width:900px;margin:0 auto;padding-top:40px;}
+.modal-tag{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--sand2);margin-bottom:12px;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);margin-bottom:32px;}
+.modal-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:40px;}
+.modal-meta-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand2);opacity:0.5;margin-bottom:4px;}
+.modal-meta-val{font-size:14px;color:var(--sand);}
+.modal-divider{height:1px;margin:32px 0;}
+.modal-section-title{font-size:11px;letter-spacing:0.25em;text-transform:uppercase;margin-bottom:16px;}
+.modal-text{font-size:15px;color:var(--sand2);line-height:1.8;}
+.modal-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px;}
+.modal-step{padding:20px;border-left:2px solid rgba(212,168,67,0.3);}
+.modal-step-n{font-family:'Bebas Neue',sans-serif;font-size:32px;color:rgba(212,168,67,0.2);line-height:1;}
+.modal-step-t{font-size:14px;color:var(--sand);font-weight:500;margin:4px 0;}
+.modal-step-d{font-size:13px;color:var(--sand2);line-height:1.6;}
+.modal-link{display:inline-block;margin-top:8px;padding:10px 20px;border:1px solid;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:opacity 0.2s;}
+.modal-link:hover{opacity:0.7;}
+
+/* MOBILE NAV */
+.mobile-nav{display:none;position:fixed;inset:0;background:rgba(10,10,15,0.98);z-index:9000;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.1em;color:var(--sand2);text-decoration:none;}
+.mobile-nav a:hover{color:var(--gold);}
+
+/* REVEAL SCROLL */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ARABIC */
+#arabic{display:none;background:linear-gradient(160deg,#0A0514,#1A0A2E,#0A0A0F);text-align:center;}
+.arabic-h2{font-family:'Amiri',serif;font-size:clamp(36px,5.5vw,68px);color:var(--sand);line-height:1.35;margin-bottom:24px;letter-spacing:0;}
+.arabic-h2 em{color:var(--gold);font-style:italic;}
+.arabic-sub,.arabic-bio{font-family:'Noto Naskh Arabic','Amiri',serif;font-size:17px;color:var(--sand2);line-height:1.9;max-width:640px;margin:0 auto 20px;}
+.arabic-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:32px 0;}
+.arabic-badge{padding:8px 18px;border:1px solid rgba(212,168,67,0.2);color:var(--sand2);font-size:13px;font-family:'Cairo',sans-serif;}
+.arabic-values{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(212,168,67,0.06);margin-top:48px;}
+.arabic-value{padding:40px 32px;background:rgba(10,5,20,0.8);}
+.arabic-value-icon{font-size:36px;margin-bottom:12px;}
+.arabic-value-title{font-family:'Amiri',serif;font-size:22px;color:var(--sand);margin-bottom:8px;font-weight:700;}
+.arabic-value-text{font-family:'Noto Naskh Arabic',serif;font-size:14px;color:var(--sand2);line-height:1.8;}
+
+/* PARALLAX PHOTOS */
+.parallax-section{position:relative;height:65vh;overflow:hidden;direction:ltr;cursor:pointer;}.parallax-section .parallax-overlay{transition:opacity 0.5s;}.parallax-section:hover .parallax-overlay{opacity:1 !important;background:linear-gradient(to bottom,rgba(10,10,15,0.45),rgba(10,10,15,0.65)) !important;}.parallax-section:hover .parallax-bg{filter:brightness(1.1);transition:filter 0.6s ease;}
+.parallax-section.half{height:45vh;}
+.parallax-bg{position:absolute;top:-160px;left:0;right:0;bottom:-160px;background-size:cover;background-position:center;will-change:transform;}
+.parallax-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,5,20,0.3),rgba(10,5,20,0.5));z-index:1;}
+.parallax-caption{position:absolute;bottom:32px;right:48px;z-index:2;text-align:right;}
+.parallax-caption-ar{font-family:'Amiri',serif;font-size:18px;color:rgba(240,237,232,0.9);font-style:italic;}
+.parallax-caption-small{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(212,168,67,0.7);margin-top:4px;}
+.parallax-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--ink);}
+.parallax-grid-wide{grid-column:span 2;}
+.saudi-photos-label{font-family:'Amiri',serif;font-size:clamp(28px,4vw,48px);color:var(--sand);text-align:center;padding:60px 48px 0;direction:rtl;}
+.saudi-photos-label em{color:var(--gold);font-style:italic;}
+
+.lang-ar .about-h2{font-family:'Amiri','Noto Naskh Arabic',serif;font-size:clamp(56px,8vw,110px);line-height:1.1;}
+/* ABOUT PERSONAL PHOTOS */
+.about-photos-section{background:var(--ink);}
+.about-photos-label{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,3.5vw,44px);color:var(--sand);padding:64px 48px 24px;letter-spacing:0.03em;}
+.lang-ar .about-photos-label{font-family:'Amiri',serif;padding:64px 48px 24px;direction:rtl;}
+.about-photos-label em{color:var(--gold);font-style:italic;}
+
+/* ARABIC SHREDDER SECTION FIXES */
+.lang-ar .big-no{font-family:'Amiri',serif !important;line-height:1.2;}
+.lang-ar .shredder-header .label{font-size:clamp(20px,2.8vw,36px);letter-spacing:0.04em;opacity:1;font-family:'Cairo',sans-serif;color:var(--gold);margin-bottom:12px;}.lang-ar .big-no{font-size:clamp(52px,7vw,90px);}
+
+/* ARABIC PERSONAL PHOTO */
+.arabic-personal{position:relative;height:70vh;overflow:hidden;margin-top:0;}
+.arabic-personal-caption{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:40px;background:linear-gradient(to top,rgba(10,5,20,0.7) 0%,transparent 50%);}
+.arabic-personal-name{font-family:'Amiri',serif;font-size:clamp(22px,3vw,36px);color:var(--sand);margin-bottom:6px;}
+.arabic-personal-sub{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(212,168,67,0.8);}
+
+/* CURSOR */
+.cursor-dot{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;}
+.cursor-ring{width:32px;height:32px;border:1px solid rgba(212,168,67,0.4);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width 0.25s,height 0.25s,opacity 0.2s;left:-100px;top:-100px;}
+.cursor-dot,.cursor-ring{display:none;}
+@media(hover:hover){body{cursor:none;}.cursor-dot,.cursor-ring{display:block;}}
+
+/* GRAIN */
+#grain{position:fixed;inset:0;pointer-events:none;z-index:99997;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;}
+
+/* PHOTO STRIP */
+.photo-strip{overflow:hidden;background:var(--ink);padding:56px 0;position:relative;}
+.photo-strip::before,.photo-strip::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none;}
+.photo-strip::before{left:0;background:linear-gradient(90deg,var(--ink),transparent);}
+.photo-strip::after{right:0;background:linear-gradient(-90deg,var(--ink),transparent);}
+.photo-track{display:flex;gap:12px;width:max-content;animation:photoScroll 22s linear infinite;}
+.photo-track:hover{animation-play-state:paused;}
+.photo-item{width:280px;height:170px;position:relative;overflow:hidden;cursor:pointer;flex-shrink:0;border:1px solid rgba(212,168,67,0.07);transition:border-color 0.3s,transform 0.3s;}
+.photo-item:hover{border-color:rgba(212,168,67,0.3);transform:translateY(-4px);}
+.photo-item-num{position:absolute;top:12px;left:16px;font-family:'Bebas Neue',sans-serif;font-size:56px;color:rgba(240,237,232,0.06);line-height:1;}
+.photo-item-label{position:absolute;bottom:16px;left:16px;right:16px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;color:var(--sand);line-height:1;}
+.photo-item-tag{position:absolute;top:14px;right:12px;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);opacity:0.7;background:rgba(212,168,67,0.08);padding:4px 8px;}
+@keyframes photoScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* RTL */
+.lang-ar{direction:rtl;font-family:'Cairo','Noto Naskh Arabic',sans-serif;word-spacing:4px;}
+.lang-ar .label::before{display:none;}
+.lang-ar .label::after{content:'';width:32px;height:1px;background:var(--gold);opacity:0.5;}
+.lang-ar .hero-h1{line-height:1.2;}.lang-ar .section-h2{font-family:'Amiri','Noto Naskh Arabic',serif;}.lang-ar .arabic-h2{font-family:'Amiri',serif;}
+.lang-ar .photo-item-label{left:auto;right:16px;text-align:right;}
+.lang-ar .photo-item-tag{right:auto;left:12px;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  .burger{display:flex;}
+  section{padding:80px 24px;}
+  #hero{padding:80px 24px 60px;min-height:auto;}
+  .hero-stats{flex-wrap:wrap;gap:24px;margin-top:48px;}
+  .services-grid{grid-template-columns:1fr;}
+  .method-grid{grid-template-columns:1fr;}
+  .portfolio-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;gap:32px;}
+  .about-h2{font-size:clamp(52px,13vw,80px);}
+  .modal-steps{grid-template-columns:1fr;}
+  .modal-meta{grid-template-columns:repeat(2,1fr);}
+  .arabic-values{grid-template-columns:1fr;}
+  .parallax-grid{grid-template-columns:1fr;}
+  .parallax-grid-wide{grid-column:span 1;}
+  .parallax-section{height:45vh;}
+  .parallax-section.half{height:38vh;}
+  .parallax-caption{right:24px;bottom:20px;}
+  .saudi-photos-label{padding:40px 24px 0;}
+  .calc-wrap{padding:32px 24px;}.calc-result{flex-wrap:wrap;gap:16px;}
+  .calc-toggles{gap:6px;}
+  .calc-toggle{padding:8px 14px;font-size:11px;}
+  footer{padding:24px;flex-direction:column;text-align:center;}.reject-grid{gap:8px;}.arabic-personal{height:50vh;}
+  .photo-strip{padding:32px 0;}
+  .photo-item{width:220px;height:140px;}
+  .modal-inner{padding-top:60px;}
+}
+@media(max-width:600px){
+  .hero-h1{font-size:clamp(44px,14vw,60px);}
+  .hero-ctas{flex-direction:column;align-items:flex-start;}
+  .hero-sub{font-size:14px;}
+  .portfolio-grid{grid-template-columns:1fr;}
+  .section-h2{font-size:clamp(32px,9vw,52px);}
+  .calc-result{gap:24px;}
+  #modal-overlay{padding:20px 16px;}
+  .modal-meta{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="grain"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#what-i-do" onclick="closeMobileNav()" data-i18n="nav.services">Услуги</a>
+  <a href="#methodology" onclick="closeMobileNav()" data-i18n="nav.process">Процесс</a>
+  <a href="#portfolio" onclick="closeMobileNav()" data-i18n="nav.works">Работы</a>
+  <a href="#about" onclick="closeMobileNav()" data-i18n="nav.about">Обо мне</a>
+  <a href="#cta" onclick="closeMobileNav()" data-i18n="nav.cta">Обсудить проект</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#what-i-do" data-i18n="nav.services">Услуги</a></li>
+    <li><a href="#methodology" data-i18n="nav.process">Процесс</a></li>
+    <li><a href="#portfolio" data-i18n="nav.works">Работы</a></li>
+    <li><a href="#about" data-i18n="nav.about">Обо мне</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="lang-switcher">
+      <button onclick="switchLang('ru')" class="lang-btn active" id="btnRu">RU</button>
+      <span class="lang-sep">|</span>
+      <button onclick="switchLang('ar')" class="lang-btn" id="btnAr">عربي</button>
+    </div>
+    <a href="#cta" class="nav-cta" data-i18n="nav.cta">Обсудить проект</a>
+    <button class="burger" id="burger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="hero-dot"></span>
+      <span data-i18n="hero.tag">Веб-дизайнер и разработчик · Доступен для проектов</span>
+    </div>
+    <h1 class="hero-h1" id="heroH1">
+      <span>ДАЛИР</span><br>
+      <em>МАН</em><span class="outline">СУРОВ</span>
+    </h1>
+    <p class="hero-sub" data-i18n="hero.sub">
+      Создаю сайты, которые <strong>продают</strong>.<br>
+      От маркетингового анализа до живого сайта — под ключ.
+    </p>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn-gold" data-i18n="hero.btn1">Смотреть работы</a>
+      <a href="#calculator" class="btn-ghost" data-i18n="hero.btn2">Рассчитать проект</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-n" data-count="3">3</div>
+        <div class="hero-stat-l" data-i18n="hero.stat1_l">Проекта в портфолио</div>
+      </div>
+      <div id="heroStat2" style="display:none;">
+        <div class="hero-stat-n" data-count="10">10</div>
+        <div class="hero-stat-l" data-i18n="hero.stat2_l">شهور في الرياض</div>
+      </div>
+      <div>
+        <div class="hero-stat-n" data-count="8">8</div>
+        <div class="hero-stat-l" data-i18n="hero.stat3_l">Этапов в каждом проекте</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="photo-strip" aria-hidden="true">
+  <div class="photo-track">
+    <div class="photo-item" onclick="openModal('aravia')">
+      <div class="photo-item-num">01</div>
+      <div class="photo-item-tag">ПАЛОМНИЧЕСТВО</div>
+      <div class="photo-item-label">VISIT ARAVIA</div>
+    </div>
+    <div class="photo-item" onclick="openModal('insta')">
+      <div class="photo-item-num">02</div>
+      <div class="photo-item-tag">КОРПОРАТИВ</div>
+      <div class="photo-item-label">ВЕБ-ПРОЕКТ 2025</div>
+    </div>
+    <div class="photo-item" onclick="openModal('rehab')">
+      <div class="photo-item-num">03</div>
+      <div class="photo-item-tag">МЕДИЦИНА</div>
+      <div class="photo-item-label">REHABMEN</div>
+    </div>
+    <div class="photo-item" style="cursor:default;">
+      <div class="photo-item-num">04</div>
+      <div class="photo-item-tag">В РАБОТЕ</div>
+      <div class="photo-item-label">НОВЫЙ ПРОЕКТ</div>
+    </div>
+    <!-- duplicate for seamless loop -->
+    <div class="photo-item" onclick="openModal('aravia')">
+      <div class="photo-item-num">01</div>
+      <div class="photo-item-tag">ПАЛОМНИЧЕСТВО</div>
+      <div class="photo-item-label">VISIT ARAVIA</div>
+    </div>
+    <div class="photo-item" onclick="openModal('insta')">
+      <div class="photo-item-num">02</div>
+      <div class="photo-item-tag">КОРПОРАТИВ</div>
+      <div class="photo-item-label">ВЕБ-ПРОЕКТ 2025</div>
+    </div>
+    <div class="photo-item" onclick="openModal('rehab')">
+      <div class="photo-item-num">03</div>
+      <div class="photo-item-tag">МЕДИЦИНА</div>
+      <div class="photo-item-label">REHABMEN</div>
+    </div>
+    <div class="photo-item" style="cursor:default;">
+      <div class="photo-item-num">04</div>
+      <div class="photo-item-tag">В РАБОТЕ</div>
+      <div class="photo-item-label">НОВЫЙ ПРОЕКТ</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-section" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">WEB DESIGN</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">TILDA</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">FIGMA</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">UI/UX</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">LANDING PAGE</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">E-COMMERCE</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">RTL ARABIC</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">ZERO BLOCK</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">WEB DESIGN</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">TILDA</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">FIGMA</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">UI/UX</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">LANDING PAGE</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">E-COMMERCE</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">RTL ARABIC</span><span class="marquee-sep">·</span>
+    <span class="marquee-item">ZERO BLOCK</span><span class="marquee-sep">·</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="what-i-do">
+  <div class="container">
+    <div class="label reveal" data-i18n="services.label">Что создаю</div>
+    <h2 class="section-h2 reveal" data-i18n="services.h2">ПРОЕКТЫ КОТОРЫЕ<br><span style="color:var(--gold);">Я БЕРУ В РАБОТУ</span></h2>
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="service-num">01</div><div class="service-title" data-i18n="service.t1">Лендинг / Сайт-визитка</div><div class="service-desc" data-i18n="service.d1">Продающие одностраничники для услуг, продуктов, личного бренда.</div></div>
+      <div class="service-card reveal"><div class="service-num">02</div><div class="service-title" data-i18n="service.t2">Интернет-магазин</div><div class="service-desc" data-i18n="service.d2">Полноценный магазин с каталогом, корзиной, оплатой.</div></div>
+      <div class="service-card reveal"><div class="service-num">03</div><div class="service-title" data-i18n="service.t3">Корпоративный сайт</div><div class="service-desc" data-i18n="service.d3">Многостраничные сайты для компаний с разделами, командой, услугами.</div></div>
+      <div class="service-card reveal"><div class="service-num">04</div><div class="service-title" data-i18n="service.t4">Медицина и здоровье</div><div class="service-desc" data-i18n="service.d4">Клиники, реабилитационные центры, врачи.</div></div>
+      <div class="service-card reveal"><div class="service-num">05</div><div class="service-title" data-i18n="service.t5">Туризм и паломничество</div><div class="service-desc" data-i18n="service.d5">Сайты для тур-агентств, паломнических туров.</div></div>
+      <div class="service-card reveal"><div class="service-num">06</div><div class="service-title" data-i18n="service.t6">Двуязычные сайты AR/RU</div><div class="service-desc" data-i18n="service.d6">RTL-адаптация под арабский рынок. Шрифты Cairo и Noto Naskh.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHREDDER -->
+<section id="no-projects">
+  <div class="container">
+    <div class="shredder-header">
+      <div class="label reveal" style="justify-content:center;" data-i18n="shredder.label">Не берусь за</div>
+      <div class="big-no reveal" id="bigNoEl">НЕ МОЯ РАБОТА</div>
+      <p class="reveal" style="font-size:15px;color:var(--sand2);margin-top:16px;" data-i18n="shredder.sub">Нажми на карточку — и она уйдёт в шредер.</p>
+    </div>
+    <div class="reject-grid" id="rejectGrid">
+      <div class="reject-item">🎵 Музыкальные фестивали</div>
+      <div class="reject-item">🎤 Певцы и артисты</div>
+      <div class="reject-item">🎰 Азартные игры</div>
+      <div class="reject-item">⚽ Ставки на спорт</div>
+      <div class="reject-item">💄 Бьюти-индустрия</div>
+      <div class="reject-item">🥊 UFC и единоборства</div>
+      <div class="reject-item">💰 Банковские проценты (риба)</div>
+    </div>
+    <p class="reveal" style="font-size:13px;color:var(--sand2);opacity:0.65;max-width:520px;margin:32px auto 48px;text-align:center;line-height:1.9;" data-i18n="shredder.explain">Я соблюдаю исламские ценности — и отказываюсь от проектов, которые им противоречат. Это не просто принцип — это часть моей профессиональной этики.</p>
+    <canvas id="shredder-canvas" width="800" height="280"></canvas>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="methodology">
+  <div class="container">
+    <div class="label reveal" data-i18n="method.label">Как я работаю</div>
+    <h2 class="section-h2 reveal" data-i18n="method.h2">8 ШАГОВ ОТ ИДЕИ<br><span style="color:var(--gold);">ДО ЖИВОГО САЙТА</span></h2>
+    <div class="method-grid">
+      <div class="method-step reveal"><div class="step-num">01</div><div class="step-icon">🔍</div><div class="step-title" data-i18n="step.t1">Маркетинговый анализ</div><div class="step-desc" data-i18n="step.d1">Изучаю конкурентов, целевую аудиторию, рынок. Формулируем УТП.</div></div>
+      <div class="method-step reveal"><div class="step-num">02</div><div class="step-icon">📐</div><div class="step-title" data-i18n="step.t2">Прототип + текст</div><div class="step-desc" data-i18n="step.d2">Wireframe каждой страницы в Figma. Структура блоков до дизайна.</div></div>
+      <div class="method-step reveal"><div class="step-num">03</div><div class="step-icon">🎨</div><div class="step-title" data-i18n="step.t3">Дизайн-концепция</div><div class="step-desc" data-i18n="step.d3">Цвета, шрифты, настроение. 1–2 варианта направления на согласование.</div></div>
+      <div class="method-step reveal"><div class="step-num">04</div><div class="step-icon">✏️</div><div class="step-title" data-i18n="step.t4">Дизайн-макет</div><div class="step-desc" data-i18n="step.d4">Финальный макет всех страниц в Figma. Все экраны и состояния.</div></div>
+      <div class="method-step reveal"><div class="step-num">05</div><div class="step-icon">💻</div><div class="step-title" data-i18n="step.t5">Верстка на Tilda</div><div class="step-desc" data-i18n="step.d5">Pixel-perfect верстка в Tilda Zero Block. Кастомный CSS и JS.</div></div>
+      <div class="method-step reveal"><div class="step-num">06</div><div class="step-icon">📱</div><div class="step-title" data-i18n="step.t6">Адаптивность</div><div class="step-desc" data-i18n="step.d6">iPhone SE → iPad → Desktop. Тестирую на реальных устройствах.</div></div>
+      <div class="method-step reveal"><div class="step-num">07</div><div class="step-icon">🔌</div><div class="step-title" data-i18n="step.t7">Интеграции</div><div class="step-desc" data-i18n="step.d7">CRM, эквайринг Т-Банк, Яндекс.Метрика, WhatsApp-кнопки.</div></div>
+      <div class="method-step reveal"><div class="step-num">08</div><div class="step-icon">🚀</div><div class="step-title" data-i18n="step.t8">Запуск + поддержка</div><div class="step-desc" data-i18n="step.d8">Финальный чеклист, публикация. Сопровождение 30 дней.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculator">
+  <div class="container">
+    <div class="label reveal" data-i18n="calc.label">Стоимость проекта</div>
+    <h2 class="section-h2 reveal" data-i18n="calc.h2">РАССЧИТАЙТЕ<br><span style="color:var(--gold);">СВОЙ САЙТ</span></h2>
+    <div class="calc-wrap reveal">
+      <div class="calc-row">
+        <div class="calc-label" data-i18n="calc.typeLabel">Тип проекта</div>
+        <div class="calc-toggles" id="calcType">
+          <div class="calc-toggle on" data-base="50000" data-time="10" data-i18n="calc.type1">Лендинг</div>
+          <div class="calc-toggle" data-base="100000" data-time="21" data-i18n="calc.type2">Интернет-магазин</div>
+          <div class="calc-toggle" data-base="130000" data-time="28" data-i18n="calc.type3">Корпоративный сайт</div>
+          <div class="calc-toggle" data-base="85000" data-time="17" data-i18n="calc.type4">Двуязычный AR/RU</div>
+        </div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-label"><span data-i18n="calc.pageLabel">Количество страниц</span>: <span id="pageCountLabel">5</span></div>
+        <input type="range" id="pageCount" min="1" max="20" value="5">
+      </div>
+      <div class="calc-row">
+        <div class="calc-label" data-i18n="calc.extrasLabel">Дополнительные услуги</div>
+        <div class="calc-toggles" id="calcExtras">
+          <div class="calc-toggle" data-extra="15000">+Анимации и интерактив</div>
+          <div class="calc-toggle" data-extra="12000">+Подключение оплаты</div>
+          <div class="calc-toggle" data-extra="10000">+Google Analytics</div>
+          <div class="calc-toggle" data-extra="8000">+SEO-оптимизация</div>
+          <div class="calc-toggle" data-extra="20000">+Контент (тексты + фото)</div>
+          <div class="calc-toggle" data-extra="6000">+Домен + хостинг 1 год</div>
+          <div class="calc-toggle" data-extra="18000">+Интеграция CRM</div>
+          <div class="calc-toggle" data-extra="25000">+Двуязычность AR/RU</div>
+          <div class="calc-toggle" data-extra="14000">+WhatsApp-бот</div>
+          <div class="calc-toggle" data-extra="10000">+Pop-up окна</div>
+        </div>
+      </div>
+      <div class="calc-result">
+        <div>
+          <div class="calc-price-label" data-i18n="calc.priceLabel">Стоимость проекта</div>
+          <div class="calc-price" id="calcPrice">50 000 ₽</div>
+        </div>
+        <div>
+          <div class="calc-price-label" data-i18n="calc.timeLabel">Сроки</div>
+          <div class="calc-time" id="calcTime">~10 дней</div>
+        </div>
+        <a href="https://wa.me/79513894443" class="btn-gold" data-i18n="calc.btn">Обсудить проект →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="label reveal" data-i18n="portfolio.label">Мои работы</div>
+    <h2 class="section-h2 reveal" data-i18n="portfolio.h2">ПОРТФОЛИО</h2>
+    <p class="reveal" style="color:var(--sand2);font-size:15px;max-width:500px;" data-i18n="portfolio.sub">Нажмите на проект, чтобы увидеть детали.</p>
+    <div class="portfolio-grid">
+      <div class="project-card reveal" onclick="openModal('aravia')">
+        <div class="project-thumb">🕌</div>
+        <div class="project-always"><div class="project-tag" data-i18n="portfolio.tag1">Умра · Хадж · Паломничество</div><div class="project-name" data-i18n="portfolio.name1">Visit Aravia</div></div>
+        <div class="project-info"><div class="project-detail" data-i18n="portfolio.detail1">Фирменный сайт для паломнических туров. Tilda, кастомный дизайн.</div><div class="project-link" data-i18n="portfolio.link1">Смотреть проект →</div></div>
+      </div>
+      <div class="project-card reveal" onclick="openModal('insta')">
+        <div class="project-thumb">🏢</div>
+        <div class="project-always"><div class="project-tag" data-i18n="portfolio.tag2">Корпоратив · Лендинг · 2025</div><div class="project-name" data-i18n="portfolio.name2">ВЕБ-ПРОЕКТ 2025</div></div>
+        <div class="project-info"><div class="project-detail" data-i18n="portfolio.detail2">Дизайн и вёрстка под ключ. Смотреть в Instagram.</div><div class="project-link" data-i18n="portfolio.link2">Смотреть в Instagram →</div></div>
+      </div>
+      <div class="project-card reveal" onclick="openModal('rehab')">
+        <div class="project-thumb">💪</div>
+        <div class="project-always"><div class="project-tag" data-i18n="portfolio.tag3">Медицина · Реабилитация</div><div class="project-name" data-i18n="portfolio.name3">REHABMEN</div></div>
+        <div class="project-info"><div class="project-detail" data-i18n="portfolio.detail3">Центр восстановления для мужчин. Pop-up анимации.</div><div class="project-link" data-i18n="portfolio.link3">Смотреть проект →</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="modal-overlay">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-inner" id="modalContent"></div>
+</div>
+
+<!-- ARABIC SECTION -->
+<section id="arabic">
+  <div class="container" style="text-align:center;">
+    <p style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(212,168,67,0.6);margin-bottom:20px;">للعملاء في المملكة العربية السعودية</p>
+    <h2 class="arabic-h2 reveal">تصميم مواقع <em>احترافية</em><br>للسوق السعودي</h2>
+    <p class="arabic-sub reveal">أقدم خدمات تصميم وتطوير المواقع المتوافقة مع القيم والثقافة السعودية.</p>
+    <p class="arabic-bio reveal">أقمت في <strong style="color:var(--gold);">الرياض ١٠ أشهر</strong> لتعلم اللغة العربية في <strong style="color:var(--gold);">مجمع الملك سلمان العالمي للغة العربية</strong>.</p>
+    <div class="arabic-badges reveal">
+      <div class="arabic-badge">🇸🇦 متوافق مع القيم الإسلامية</div>
+      <div class="arabic-badge">📱 تصميم متجاوب</div>
+      <div class="arabic-badge">🔤 خطوط Cairo · Noto Naskh</div>
+      <div class="arabic-badge">↔️ دعم RTL كامل</div>
+    </div>
+    <div class="arabic-values reveal">
+      <div class="arabic-value"><div class="arabic-value-icon">🕌</div><div class="arabic-value-title">القيم الإسلامية</div><div class="arabic-value-text">تصميم يحترم الثقافة والدين.</div></div>
+      <div class="arabic-value"><div class="arabic-value-icon">✨</div><div class="arabic-value-title">الأناقة والفخامة</div><div class="arabic-value-text">ألوان وخطوط تعكس الذوق الرفيع.</div></div>
+      <div class="arabic-value"><div class="arabic-value-icon">📞</div><div class="arabic-value-title">تواصل مباشر</div><div class="arabic-value-text">أتحدث العربية وأفهم احتياجاتكم.</div></div>
+    </div>
+  </div>
+
+  <!-- DALIR PERSONAL PHOTO -->
+  <div class="arabic-personal" data-parallax>
+    <div class="parallax-bg" style="background-image:url('img/dalir-saudi.jpg')"></div>
+    <div class="parallax-overlay" style="background:linear-gradient(to top,rgba(10,5,20,0.75) 0%,rgba(10,5,20,0.15) 60%,transparent 100%);"></div>
+    <div class="arabic-personal-caption">
+      <div class="arabic-personal-name">دالير منصوروف — مجمع الملك سلمان العالمي للغة العربية</div>
+      <div class="arabic-personal-sub">الرياض · المملكة العربية السعودية</div>
+    </div>
+  </div>
+
+    <!-- SAUDI PARALLAX PHOTOS -->
+  <div class="saudi-photos-label reveal">من <em>ذكرياتي</em> في المملكة</div>
+
+  <div class="parallax-grid">
+    <div class="parallax-section parallax-grid-wide" data-parallax>
+      <div class="parallax-bg" style="background-image:url('img/saudi1.jpg')"></div>
+      <div class="parallax-overlay"></div>
+      <div class="parallax-caption">
+        <div class="parallax-caption-ar">التراث والأصالة</div>
+        <div class="parallax-caption-small">الرياض · المملكة العربية السعودية</div>
+      </div>
+    </div>
+    <div class="parallax-section half" data-parallax>
+      <div class="parallax-bg" style="background-image:url('img/saudi2.jpg')"></div>
+      <div class="parallax-overlay"></div>
+      <div class="parallax-caption">
+        <div class="parallax-caption-ar">بيت عيسى</div>
+        <div class="parallax-caption-small">تراثنا يجمعنا</div>
+      </div>
+    </div>
+    <div class="parallax-section half" data-parallax>
+      <div class="parallax-bg" style="background-image:url('img/saudi3.jpg')"></div>
+      <div class="parallax-overlay"></div>
+      <div class="parallax-caption">
+        <div class="parallax-caption-ar">الليل والنور</div>
+        <div class="parallax-caption-small">أجواء التاريخ</div>
+      </div>
+    </div>
+    <div class="parallax-section half" data-parallax>
+      <div class="parallax-bg" style="background-image:url('img/saudi4.jpg')"></div>
+      <div class="parallax-overlay"></div>
+      <div class="parallax-caption">
+        <div class="parallax-caption-ar">الصحراء اللانهائية</div>
+        <div class="parallax-caption-small">حافة العالم · الرياض</div>
+      </div>
+    </div>
+    <div class="parallax-section half" data-parallax>
+      <div class="parallax-bg" style="background-image:url('img/saudi5.jpg')"></div>
+      <div class="parallax-overlay"></div>
+      <div class="parallax-caption">
+        <div class="parallax-caption-ar">الرياض الحديثة</div>
+        <div class="parallax-caption-small">مستقبل المملكة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="label reveal" data-i18n="about.label">Обо мне</div>
+    <div class="about-grid">
+      <div>
+        <div class="label reveal" data-i18n="about.label">Обо мне</div>
+        <h2 class="about-h2 reveal" data-i18n="about.h2">ДИЗАЙН —<br><em>ИНСТРУМЕНТ ПРОДАЖ</em></h2>
+        <p class="about-text reveal" data-i18n="about.p1">Создаю сайты, в которых дизайн — не украшение, а инструмент продаж. Веб-дизайнер из России. Каждый проект начинается с глубокого понимания бизнеса клиента.</p>
+        <p class="about-text reveal" data-i18n="about.p2">Провёл 10 месяцев в Эр-Рияде, изучая арабский язык в Глобальной академии имени короля Салмана — это даёт мне уникальную возможность создавать сайты для мусульманской аудитории.</p>
+        <p class="about-text reveal" data-i18n="about.p3">Специализируюсь на Tilda. Клиент может сам вносить мелкие правки.</p>
+        <div class="stack-tags reveal">
+          <span class="stack-tag">Figma</span><span class="stack-tag">Tilda</span><span class="stack-tag">CSS/JS</span><span class="stack-tag">RTL</span><span class="stack-tag">UI/UX</span>
+        </div>
+      </div>
+      <div>
+        <div class="skills-list">
+          <div class="skill-item reveal"><div class="skill-name"><span data-i18n="skill.s1">UI/UX Дизайн (Figma)</span><span>92%</span></div><div class="skill-track"><div class="skill-bar" data-width="92"></div></div></div>
+          <div class="skill-item reveal"><div class="skill-name"><span data-i18n="skill.s2">Верстка на Tilda</span><span>95%</span></div><div class="skill-track"><div class="skill-bar" data-width="95"></div></div></div>
+          <div class="skill-item reveal"><div class="skill-name"><span data-i18n="skill.s3">CSS / JS анимации</span><span>78%</span></div><div class="skill-track"><div class="skill-bar" data-width="78"></div></div></div>
+          <div class="skill-item reveal"><div class="skill-name"><span data-i18n="skill.s4">Адаптивная вёрстка</span><span>90%</span></div><div class="skill-track"><div class="skill-bar" data-width="90"></div></div></div>
+          <div class="skill-item reveal"><div class="skill-name"><span data-i18n="skill.s5">RTL / Арабский рынок</span><span>85%</span></div><div class="skill-track"><div class="skill-bar" data-width="85"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PHOTOS -->
+  <div class="about-photos-section">
+    <div class="about-photos-label reveal" data-i18n="about.photos_label">В <em>ЭР-РИЯДЕ</em></div>
+    <div class="parallax-grid">
+      <!-- Top: full width cinematic photo -->
+      <div class="parallax-section parallax-grid-wide" style="height:70vh;" data-parallax>
+        <div class="parallax-bg" style="background-image:url('img/dalir-riyadh.jpg')"></div>
+        <div class="parallax-overlay" style="background:linear-gradient(135deg,rgba(10,10,15,0.2),rgba(10,10,15,0.55));"></div>
+        <div class="parallax-caption">
+          <div class="parallax-caption-ar" data-i18n="about.photo1_cap">Эр-Рияд, Саудовская Аравия</div>
+          <div class="parallax-caption-small">RIYADH · SAUDI ARABIA · 2025</div>
+        </div>
+      </div>
+      <!-- Bottom row: two equal columns -->
+      <div class="parallax-section" style="height:58vh;" data-parallax>
+        <div class="parallax-bg" style="background-image:url('img/dalir-flowers.jpg');background-position:top center;"></div>
+        <div class="parallax-overlay"></div>
+        <div class="parallax-caption">
+          <div class="parallax-caption-ar" data-i18n="about.photo2_cap">Старый квартал Эр-Рияда</div>
+          <div class="parallax-caption-small">OLD RIYADH · SAUDI ARABIA</div>
+        </div>
+      </div>
+      <div class="parallax-section" style="height:58vh;" data-parallax>
+        <div class="parallax-bg" style="background-image:url('img/dalir-library.jpg');background-position:top center;"></div>
+        <div class="parallax-overlay" style="background:linear-gradient(to bottom,transparent 20%,rgba(10,10,15,0.6));"></div>
+        <div class="parallax-caption">
+          <div class="parallax-caption-ar" data-i18n="about.photo3_cap">Библиотека академии короля Салмана</div>
+          <div class="parallax-caption-small">KING SALMAN GLOBAL ACADEMY · RIYADH</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="label reveal" data-i18n="cta.label">Начнём?</div>
+    <h2 class="cta-h2 reveal" data-i18n="cta.h2">ЕСТЬ ПРОЕКТ?<br><em>ПОГОВОРИМ.</em></h2>
+    <p class="cta-sub reveal" data-i18n="cta.sub">Расскажите о вашей задаче — я отвечу в течение нескольких часов.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;" class="reveal">
+      <a href="https://wa.me/79513894443" class="btn-gold">WhatsApp →</a>
+      <a href="https://t.me/Dalir37" class="btn-ghost">Telegram</a>
+    </div>
+    <div class="cta-contacts reveal">
+      <a href="https://instagram.com/mansurov.dalir2018" class="cta-contact">Instagram</a>
+      <a href="mailto:mansurov.dalir09@gmail.com" class="cta-contact">mansurov.dalir09@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2026 Далир Мансуров — Веб-дизайн и разработка</div>
+</footer>
+
+<script>
+// ── COUNTER ANIMATION ──
+function animCount(el, target) {
+  var start = 0, dur = 1400, t0 = null;
+  function step(t) {
+    if (!t0) t0 = t;
+    var p = Math.min((t - t0) / dur, 1);
+    var ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(ease * target);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ── INTERSECTION OBSERVER ──
+var revealEls = document.querySelectorAll('.reveal');
+var revObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+revealEls.forEach(function(el) { revObs.observe(el); });
+
+// ── COUNTER TRIGGER ──
+var counters = document.querySelectorAll('[data-count]');
+var cntObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { animCount(e.target, parseInt(e.target.dataset.count)); cntObs.unobserve(e.target); }
+  });
+}, { threshold: 0.3 });
+counters.forEach(function(c) { cntObs.observe(c); });
+
+// ── SKILL BARS ──
+var bars = document.querySelectorAll('.skill-bar');
+var barObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.style.width = e.target.dataset.width + '%'; barObs.unobserve(e.target); }
+  });
+}, { threshold: 0.5 });
+bars.forEach(function(b) { barObs.observe(b); });
+
+// ── SHREDDER ──
+var canvas = document.getElementById('shredder-canvas');
+var ctx = canvas.getContext('2d');
+var particles = [];
+function Strip(x) {
+  this.x = x; this.y = -30; this.w = 8; this.h = Math.random()*40+20;
+  this.vy = Math.random()*3+2; this.angle = 0; this.wobble = Math.random()*0.3-0.15;
+  this.opacity = 1; this.color = 'hsl('+(Math.random()*20+355)+',60%,'+(Math.random()*20+30)+'%)';
+}
+Strip.prototype.update = function() { this.y += this.vy; this.angle += this.wobble; if (this.y > canvas.height) this.opacity -= 0.05; };
+Strip.prototype.draw = function() { ctx.save(); ctx.translate(this.x+this.w/2, this.y+this.h/2); ctx.rotate(this.angle); ctx.globalAlpha = Math.max(0,this.opacity); ctx.fillStyle = this.color; ctx.fillRect(-this.w/2,-this.h/2,this.w,this.h); ctx.globalAlpha=1; ctx.restore(); };
+function shred() { for(var i=0;i<canvas.width/10;i++) particles.push(new Strip(i*10+Math.random()*5)); }
+function renderShredder() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='rgba(12,8,16,0.95)'; ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle='rgba(30,20,40,1)'; ctx.fillRect(0,0,canvas.width,28);
+  for(var i=0;i<canvas.width;i+=14){ctx.fillStyle='rgba(60,40,80,1)';ctx.fillRect(i,22,8,10);}
+  ctx.fillStyle='rgba(139,58,47,0.5)'; ctx.fillRect(0,28,canvas.width,1);
+  particles = particles.filter(function(p){return p.opacity>0;});
+  particles.forEach(function(p){p.update();p.draw();});
+  if(particles.length===0){ctx.fillStyle='rgba(139,58,47,0.2)';ctx.font='13px DM Sans,sans-serif';ctx.textAlign='center';ctx.fillText(currentLang==='ar'?'انقر على بطاقة أعلاه':'НАЖМИТЕ НА КАРТОЧКУ ВЫШЕ',canvas.width/2,canvas.height/2);}
+  requestAnimationFrame(renderShredder);
+}
+renderShredder();
+document.querySelectorAll('.reject-item').forEach(function(item) {
+  item.addEventListener('click', function() {
+    shred(); this.classList.add('shredded');
+  });
+});
+
+// ── CALCULATOR ──
+var basePrice = 50000, baseTime = 10;
+var pageSlider = document.getElementById('pageCount');
+var pageLabel  = document.getElementById('pageCountLabel');
+var priceEl    = document.getElementById('calcPrice');
+var timeEl     = document.getElementById('calcTime');
+function updateCalc() {
+  var pages = parseInt(pageSlider.value);
+  var extras = Array.from(document.querySelectorAll('#calcExtras .calc-toggle.on')).reduce(function(s,t){return s+parseInt(t.dataset.extra);},0);
+  var total = basePrice + Math.max(0,(pages-5))*5000 + extras;
+  var days  = baseTime  + Math.max(0,(pages-5))*2 + Math.round(extras/8000);
+  if (currentLang === 'ar') {
+    priceEl.textContent = Math.round(total/25).toLocaleString('ar-SA') + ' ﷼';
+  } else {
+    priceEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
+  }
+  timeEl.textContent = '~' + days + ' ' + (currentLang==='ar' ? 'يوم' : 'дней');
+}
+pageSlider.addEventListener('input', function() { pageLabel.textContent = this.value; updateCalc(); });
+document.querySelectorAll('#calcType .calc-toggle').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('#calcType .calc-toggle').forEach(function(b){b.classList.remove('on');});
+    this.classList.add('on'); basePrice=parseInt(this.dataset.base); baseTime=parseInt(this.dataset.time); updateCalc();
+  });
+});
+document.querySelectorAll('#calcExtras .calc-toggle').forEach(function(btn) {
+  btn.addEventListener('click', function() { this.classList.toggle('on'); updateCalc(); });
+});
+
+// ── MODALS ──
+var modals = {
+  aravia: {
+    ru:{ color:'#6B3FA0', tag:'Паломнические туры · 2025', title:'VISIT ARAVIA',
+      meta:[{l:'Тип',v:'Коммерческий сайт'},{l:'Платформа',v:'Tilda'},{l:'Тематика',v:'Умра и Хадж'},{l:'Результат',v:'Продажи через сайт'}],
+      about:'Компания Visit Aravia организует паломнические туры. Задача — создать фирменный сайт с нуля с онлайн-оплатой через Т-Банк эквайринг.',
+      steps:[{t:'Маркетинговый анализ',d:'Изучил конкурентов, выявил триггеры доверия.'},{t:'Структура и прототип',d:'Главная, каталог туров, страницы Gold/Platinum, Хадж.'},{t:'Дизайн-концепция',d:'Фиолетово-золотая палитра. Арабская каллиграфия.'},{t:'Верстка и запуск',d:'Tilda Zero Block, CSS/JS, эквайринг Т-Банк, WhatsApp.'}],
+      aboutLabel:'О проекте', stepsLabel:'Шаги работы',
+      link:'http://aravia-visit.ru', linkLabel:'Открыть сайт →' },
+    ar:{ color:'#6B3FA0', tag:'جولات الحج والعمرة · 2025', title:'VISIT ARAVIA',
+      meta:[{l:'النوع',v:'موقع تجاري'},{l:'المنصة',v:'Tilda'},{l:'التخصص',v:'العمرة والحج'},{l:'النتيجة',v:'مبيعات عبر الموقع'}],
+      about:'تنظم شركة Visit Aravia جولات الحج والعمرة. المهمة — بناء موقع رسمي من الصفر مع دفع إلكتروني عبر T-Bank.',
+      steps:[{t:'التحليل التسويقي',d:'درست المنافسين وحددت عوامل الثقة لدى الجمهور.'},{t:'الهيكل والنموذج',d:'الرئيسية، كتالوج الجولات، صفحات Gold/Platinum، الحج، الشراكة.'},{t:'مفهوم التصميم',d:'لوحة ألوان بنفسجية ذهبية. خط عربي، خلفية داكنة.'},{t:'البناء والإطلاق',d:'Tilda Zero Block، CSS/JS مخصص، بوابة T-Bank، WhatsApp.'}],
+      aboutLabel:'عن المشروع', stepsLabel:'خطوات العمل',
+      link:'http://aravia-visit.ru', linkLabel:'فتح الموقع →' }
+  },
+  insta: {
+    ru:{ color:'#5C7AEA', tag:'Веб-дизайн · 2025', title:'ВЕБ-ПРОЕКТ 2025',
+      meta:[{l:'Тип',v:'Лендинг'},{l:'Платформа',v:'Tilda'},{l:'Тематика',v:'Корпоратив'},{l:'Результат',v:'Сайт запущен'}],
+      about:'Разработка лендинга под ключ — от прототипа до публикации. Смотреть детали кейса в Instagram.',
+      steps:[{t:'Дизайн-макет',d:'Уникальный дизайн в Figma.'},{t:'Верстка',d:'Tilda Zero Block, кастомный CSS.'},{t:'Адаптивность',d:'Полная адаптация под мобильные.'},{t:'Запуск',d:'Публикация, подключение домена.'}],
+      aboutLabel:'О проекте', stepsLabel:'Шаги работы',
+      link:'https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MjA1NzE5NzM5MjQyNDA2?story_media_id=3069177645557200793&igsh=MXN6bnB0dWNzNHk5bQ==', linkLabel:'Смотреть в Instagram →' },
+    ar:{ color:'#5C7AEA', tag:'تصميم مواقع · 2025', title:'مشروع ويب 2025',
+      meta:[{l:'النوع',v:'صفحة هبوط'},{l:'المنصة',v:'Tilda'},{l:'التخصص',v:'شركة'},{l:'النتيجة',v:'الموقع منشور'}],
+      about:'تطوير صفحة هبوط متكاملة — من النموذج الأولي حتى النشر. مشاهدة تفاصيل الكيس في إنستغرام.',
+      steps:[{t:'الماكيت',d:'تصميم فريد في Figma مراعيا الجمهور المستهدف.'},{t:'البناء',d:'Tilda Zero Block، CSS مخصص.'},{t:'التجاوب',d:'تكييف كامل للهاتف والجهاز اللوحي.'},{t:'الإطلاق',d:'النشر وربط النطاق والاختبار الكامل.'}],
+      aboutLabel:'عن المشروع', stepsLabel:'خطوات العمل',
+      link:'https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MjA1NzE5NzM5MjQyNDA2?story_media_id=3069177645557200793&igsh=MXN6bnB0dWNzNHk5bQ==', linkLabel:'مشاهدة في إنستغرام →' }
+  },
+  rehab: {
+    ru:{ color:'#1A4A3A', tag:'Медицина · 2025', title:'REHABMEN',
+      meta:[{l:'Тип',v:'Корпоративный сайт'},{l:'Платформа',v:'Tilda'},{l:'Тематика',v:'Реабилитация'},{l:'Результат',v:'Верстка + pop-up анимации'}],
+      about:'REHABMEN — центр восстановления для мужчин. Верстка готового макета + интерактивные pop-up окна.',
+      steps:[{t:'Верстка макета',d:'Pixel-perfect перенос в Tilda.'},{t:'Pop-up анимации',d:'Всплывающие окна для каждой услуги.'},{t:'Адаптивность',d:'Настройка для мобильных.'},{t:'Тестирование',d:'Все ссылки, формы, pop-up на всех устройствах.'}],
+      aboutLabel:'О проекте', stepsLabel:'Шаги работы',
+      link:'https://rehabmen.ru/page82038496.html', linkLabel:'Открыть сайт →' },
+    ar:{ color:'#1A4A3A', tag:'طب · 2025', title:'REHABMEN',
+      meta:[{l:'النوع',v:'موقع شركة'},{l:'المنصة',v:'Tilda'},{l:'التخصص',v:'إعادة التأهيل'},{l:'النتيجة',v:'بناء + نوافذ منبثقة'}],
+      about:'REHABMEN — مركز تعاف للرجال. بناء الماكيت الجاهز وإضافة نوافذ منبثقة تفاعلية لكل خدمة.',
+      steps:[{t:'بناء الماكيت',d:'نقل دقيق بكسل مثالي إلى Tilda.'},{t:'النوافذ المنبثقة',d:'نوافذ منبثقة تفاعلية لكل خدمة.'},{t:'التجاوب',d:'إعداد كامل للهواتف.'},{t:'الاختبار',d:'جميع الروابط والنماذج والنوافذ على كل الأجهزة.'}],
+      aboutLabel:'عن المشروع', stepsLabel:'خطوات العمل',
+      link:'https://rehabmen.ru/page82038496.html', linkLabel:'فتح الموقع →' }
+  }
+};
+function openModal(key) {
+  var lang = (currentLang === 'ar' && modals[key].ar) ? 'ar' : 'ru';
+  var m = modals[key][lang];
+  var ov = document.getElementById('modal-overlay');
+  ov.style.background = key==='aravia' ? 'linear-gradient(160deg,#0D0514,#1A0A2E,#0D0A14)' : key==='insta' ? 'linear-gradient(160deg,#070A1A,#0E1530,#0A0A0F)' : 'linear-gradient(160deg,#050F08,#0A1E14,#0A0A0F)';
+  var stepsHtml = m.steps.map(function(s,i){return '<div class="modal-step" style="border-left-color:'+m.color+'40"><div class="modal-step-n">0'+(i+1)+'</div><div class="modal-step-t">'+s.t+'</div><div class="modal-step-d">'+s.d+'</div></div>';}).join('');
+  var metaHtml  = m.meta.map(function(x){return '<div><div class="modal-meta-label">'+x.l+'</div><div class="modal-meta-val">'+x.v+'</div></div>';}).join('');
+  document.getElementById('modalContent').innerHTML =
+    '<div class="modal-tag">'+m.tag+'</div>'+
+    '<div class="modal-title" style="color:'+m.color+'">'+m.title+'</div>'+
+    '<div class="modal-meta">'+metaHtml+'</div>'+
+    '<div class="modal-divider" style="background:'+m.color+'30"></div>'+
+    '<div class="modal-section-title" style="color:'+m.color+'">'+m.aboutLabel+'</div>'+
+    '<p class="modal-text">'+m.about+'</p>'+
+    '<div class="modal-divider" style="background:'+m.color+'30"></div>'+
+    '<div class="modal-section-title" style="color:'+m.color+'">'+m.stepsLabel+'</div>'+
+    '<div class="modal-steps">'+stepsHtml+'</div>'+
+    '<div style="margin-top:28px"><a href="'+m.link+'" target="_blank" class="modal-link" style="color:'+m.color+';border-color:'+m.color+'60">'+m.linkLabel+'</a></div>';
+  ov.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow=''; }
+document.addEventListener('keydown', function(e) { if(e.key==='Escape') closeModal(); });
+
+// ── MOBILE NAV ──
+function toggleMobileNav() {
+  var nav = document.getElementById('mobileNav');
+  nav.classList.toggle('open');
+  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+
+// ── I18N ──
+var currentLang = 'ru';
+var CONTENT = {
+ru: {
+  'nav.services':'Услуги','nav.process':'Процесс','nav.works':'Работы','nav.about':'Обо мне','nav.cta':'Обсудить проект',
+  'hero.tag':'Веб-дизайнер и разработчик · Доступен для проектов',
+  'hero.sub':'Создаю сайты, которые <strong>продают</strong>.<br>От маркетингового анализа до живого сайта — под ключ.',
+  'hero.btn1':'Смотреть работы','hero.btn2':'Рассчитать проект',
+  'hero.stat1_l':'Проекта в портфолио','hero.stat2_l':'Месяцев в Эр-Рияде','hero.stat3_l':'Этапов в каждом проекте',
+  'services.label':'Что создаю','services.h2':'ПРОЕКТЫ КОТОРЫЕ<br><span style="color:var(--gold)">Я БЕРУ В РАБОТУ</span>',
+  'service.t1':'Лендинг / Сайт-визитка','service.d1':'Продающие одностраничники для услуг, продуктов, личного бренда.',
+  'service.t2':'Интернет-магазин','service.d2':'Полноценный магазин с каталогом, корзиной, оплатой.',
+  'service.t3':'Корпоративный сайт','service.d3':'Многостраничные сайты для компаний.',
+  'service.t4':'Медицина и здоровье','service.d4':'Клиники, реабилитационные центры, врачи.',
+  'service.t5':'Туризм и паломничество','service.d5':'Сайты для тур-агентств, паломнических туров.',
+  'service.t6':'Двуязычные сайты AR/RU','service.d6':'RTL-адаптация под арабский рынок.',
+  'shredder.label':'Не берусь за','shredder.sub':'Нажми на карточку — и она уйдёт в шредер.','shredder.explain':'Я соблюдаю исламские ценности — и отказываюсь от проектов, которые им противоречат. Это не просто принцип — это часть моей профессиональной этики.',
+  'method.label':'Как я работаю','method.h2':'8 ШАГОВ ОТ ИДЕИ<br><span style="color:var(--gold)">ДО ЖИВОГО САЙТА</span>',
+  'step.t1':'Маркетинговый анализ','step.d1':'Изучаю конкурентов, аудиторию, рынок.',
+  'step.t2':'Прототип + текст','step.d2':'Wireframe в Figma.',
+  'step.t3':'Дизайн-концепция','step.d3':'Цвета, шрифты, настроение.',
+  'step.t4':'Дизайн-макет','step.d4':'Финальный макет всех страниц.',
+  'step.t5':'Верстка на Tilda','step.d5':'Pixel-perfect в Tilda Zero Block.',
+  'step.t6':'Адаптивность','step.d6':'iPhone SE → iPad → Desktop.',
+  'step.t7':'Интеграции','step.d7':'CRM, эквайринг, аналитика.',
+  'step.t8':'Запуск + поддержка','step.d8':'Публикация. Сопровождение 30 дней.',
+  'calc.label':'Стоимость проекта','calc.h2':'РАССЧИТАЙТЕ<br><span style="color:var(--gold)">СВОЙ САЙТ</span>',
+  'calc.typeLabel':'Тип проекта','calc.pageLabel':'Количество страниц','calc.extrasLabel':'Дополнительные услуги',
+  'calc.priceLabel':'Стоимость','calc.timeLabel':'Сроки','calc.btn':'Обсудить проект →',
+  'calc.type1':'Лендинг','calc.type2':'Интернет-магазин','calc.type3':'Корпоративный сайт','calc.type4':'Двуязычный AR/RU',
+  'portfolio.label':'Мои работы','portfolio.h2':'ПОРТФОЛИО','portfolio.sub':'Нажмите на проект, чтобы увидеть детали.',
+  'portfolio.tag1':'Умра · Хадж · Паломничество','portfolio.name1':'Visit Aravia','portfolio.detail1':'Фирменный сайт для паломнических туров.','portfolio.link1':'Смотреть проект →',
+  'portfolio.tag2':'Корпоратив · Лендинг · 2025','portfolio.name2':'ВЕБ-ПРОЕКТ 2025','portfolio.detail2':'Дизайн и вёрстка под ключ.','portfolio.link2':'Смотреть в Instagram →',
+  'portfolio.tag3':'Медицина · Реабилитация','portfolio.name3':'REHABMEN','portfolio.detail3':'Центр восстановления для мужчин.','portfolio.link3':'Смотреть проект →',
+  'about.label':'Обо мне','about.h2':'ДИЗАЙН —<br><em>ИНСТРУМЕНТ ПРОДАЖ</em>',
+  'about.p1':'Создаю сайты, в которых дизайн — не украшение, а инструмент продаж. Веб-дизайнер из России.',
+  'about.p2':'Провёл 10 месяцев в Эр-Рияде, изучая арабский язык в Глобальной академии имени короля Салмана.',
+  'about.p3':'Специализируюсь на Tilda. Клиент может сам вносить мелкие правки.',
+  'skill.s1':'UI/UX Дизайн (Figma)','skill.s2':'Верстка на Tilda','skill.s3':'CSS / JS анимации','skill.s4':'Адаптивная вёрстка','skill.s5':'RTL / Арабский рынок',
+  'cta.label':'Начнём?','cta.h2':'ЕСТЬ ПРОЕКТ?<br><em>ПОГОВОРИМ.</em>','cta.sub':'Расскажите о вашей задаче — я отвечу в течение нескольких часов.',
+  'cta.btn1':'WhatsApp →','cta.btn2':'Telegram',
+  'about.photos_label':'В <em>ЭР-РИЯДЕ</em>','about.photo1_cap':'Эр-Рияд, Саудовская Аравия','about.photo2_cap':'Старый квартал Эр-Рияда','about.photo3_cap':'Библиотека академии короля Салмана'
+},
+ar: {
+  'nav.services':'الخدمات','nav.process':'المنهجية','nav.works':'الأعمال','nav.about':'نبذة عني','nav.cta':'ناقش مشروعك',
+  'hero.tag':'مصمم ومطور مواقع · متاح للمشاريع الجديدة',
+  'hero.sub':'أصمم مواقع <strong>تبيع وتقنع</strong>.<br>من التحليل التسويقي حتى الإطلاق — مشروع متكامل.',
+  'hero.btn1':'مشاهدة الأعمال','hero.btn2':'احسب تكلفة مشروعك',
+  'hero.stat1_l':'مشاريع منجزة','hero.stat2_l':'شهور في الرياض','hero.stat3_l':'خطوة في كل مشروع',
+  'services.label':'ما الذي أصنعه','services.h2':'المشاريع التي<br><span style="color:var(--gold)">أقبلها</span>',
+  'service.t1':'صفحة هبوط','service.d1':'صفحات هبوط تحويلية للخدمات والمنتجات.',
+  'service.t2':'متجر إلكتروني','service.d2':'متجر متكامل بكتالوج وسلة وبوابات دفع.',
+  'service.t3':'موقع شركة','service.d3':'مواقع متعددة الصفحات للشركات.',
+  'service.t4':'الطب والصحة','service.d4':'عيادات ومراكز إعادة التأهيل.',
+  'service.t5':'السياحة والحج','service.d5':'مواقع لوكالات السفر وجولات الحج.',
+  'service.t6':'مواقع ثنائية AR/RU','service.d6':'تكييف كامل لدعم RTL.',
+  'shredder.label':'لا أعمل في','shredder.sub':'انقر على البطاقة — ستشرد.','shredder.explain':'أتمسك بالقيم الإسلامية وأرفض المشاريع المخالفة للحلال. هذا ليس مجرد مبدأ — بل جزء من أخلاقياتي المهنية.',
+  'method.label':'كيف أعمل','method.h2':'٨ خطوات من الفكرة<br><span style="color:var(--gold)">إلى الموقع المباشر</span>',
+  'step.t1':'التحليل التسويقي','step.d1':'أدرس المنافسين والجمهور والسوق.',
+  'step.t2':'النموذج الأولي','step.d2':'Wireframe في Figma.',
+  'step.t3':'مفهوم التصميم','step.d3':'الألوان والخطوط والمزاج.',
+  'step.t4':'الماكيت النهائي','step.d4':'ماكيت كامل لجميع الصفحات.',
+  'step.t5':'البناء على Tilda','step.d5':'بناء بدقة بكسل مثالية.',
+  'step.t6':'التجاوب','step.d6':'iPhone SE → iPad → Desktop.',
+  'step.t7':'التكاملات','step.d7':'CRM وبوابات الدفع والتحليل.',
+  'step.t8':'الإطلاق','step.d8':'إطلاق مع دعم ٣٠ يوما.',
+  'calc.label':'تكلفة المشروع','calc.h2':'احسب<br><span style="color:var(--gold)">موقعك</span>',
+  'calc.typeLabel':'نوع المشروع','calc.pageLabel':'عدد الصفحات','calc.extrasLabel':'خدمات إضافية',
+  'calc.priceLabel':'التكلفة','calc.timeLabel':'المدة','calc.btn':'ناقش مشروعك ←',
+  'calc.type1':'صفحة هبوط','calc.type2':'متجر إلكتروني','calc.type3':'موقع شركة','calc.type4':'ثنائي اللغة AR/RU',
+  'portfolio.label':'أعمالي','portfolio.h2':'المحفظة','portfolio.sub':'انقر على أي مشروع لرؤية تفاصيله.',
+  'portfolio.tag1':'عمرة · حج','portfolio.name1':'Visit Aravia','portfolio.detail1':'موقع لبيع جولات الحج والعمرة.','portfolio.link1':'مشاهدة المشروع ←',
+  'portfolio.tag2':'تصميم مواقع · 2025','portfolio.name2':'مشروع ويب 2025','portfolio.detail2':'تصميم وتطوير متكامل.','portfolio.link2':'مشاهدة في إنستغرام ←',
+  'portfolio.tag3':'طب','portfolio.name3':'REHABMEN','portfolio.detail3':'مركز تعافي للرجال.','portfolio.link3':'مشاهدة المشروع ←',
+  'about.label':'نبذة عني','about.h2':'التصميم —<br><em>أداة المبيعات</em>',
+  'about.p1':'أصمم مواقع يكون فيها التصميم أداة مبيعات. مصمم من روسيا.',
+  'about.p2':'أقمت في الرياض عشرة أشهر لتعلم اللغة العربية في مجمع الملك سلمان.',
+  'about.p3':'أتخصص في Tilda. يستطيع العميل إجراء التعديلات بنفسه.',
+  'skill.s1':'تصميم UI/UX','skill.s2':'البناء على Tilda','skill.s3':'CSS / JS','skill.s4':'التصميم المتجاوب','skill.s5':'RTL / السوق العربي',
+  'cta.label':'هل أنت مستعد؟','cta.h2':'لديك مشروع؟<br><em>لنتحدث.</em>','cta.sub':'أخبرني عن مهمتك — سأرد في غضون ساعات.',
+  'cta.btn1':'واتساب ←','cta.btn2':'تيليغرام',
+  'about.photos_label':'في <em>الرياض</em>','about.photo1_cap':'الرياض، المملكة العربية السعودية','about.photo2_cap':'حي الرياض القديم','about.photo3_cap':'مكتبة مجمع الملك سلمان'
+}
+};
+
+function switchLang(lang) {
+  currentLang = lang;
+  var isAr = lang === 'ar';
+  document.documentElement.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', isAr ? 'ar' : 'ru');
+  document.body.classList.toggle('lang-ar', isAr);
+  document.getElementById('btnRu').classList.toggle('active', !isAr);
+  document.getElementById('btnAr').classList.toggle('active', isAr);
+
+  // Update all data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var val = CONTENT[lang][el.dataset.i18n];
+    if (val !== undefined) el.innerHTML = val;
+  });
+
+  // Hero name
+  var h1 = document.getElementById('heroH1');
+  if (h1) h1.innerHTML = isAr
+    ? '<span style="color:var(--gold)">دالير</span><br><span>منصوروف</span>'
+    : '<span>ДАЛИР</span><br><em>МАН</em><span class="outline">СУРОВ</span>';
+
+  // Big No heading
+  var bigNo = document.getElementById('bigNoEl');
+  if (bigNo) bigNo.innerHTML = isAr
+    ? '<span style="color:var(--rust)">لا</span> أقبل هذه المشاريع'
+    : 'НЕ МОЯ РАБОТА';
+
+  // Arabic section
+  var arSection = document.getElementById('arabic');
+  if (arSection) arSection.style.display = isAr ? 'block' : 'none';
+
+  // Reject items translation
+  var ruRejects = ['🎵 Музыкальные фестивали','🎤 Певцы и артисты','🎰 Азартные игры','⚽ Ставки на спорт','💄 Бьюти-индустрия','🥊 UFC и единоборства','💰 Банковские проценты (риба)'];
+  var arRejects = ['🎵 المهرجانات الموسيقية','🎤 المغنون والفنانون','🎰 القمار','⚽ المراهنات الرياضية','💄 مستحضرات التجميل','🥊 UFC والفنون القتالية','💰 الفوائد البنكية (الربا)'];
+  document.querySelectorAll('#rejectGrid .reject-item').forEach(function(item, i) {
+    if (!item.classList.contains('shredded')) {
+      item.textContent = isAr ? arRejects[i] : ruRejects[i];
+    }
+  });
+
+  // Photo strip tags & labels
+  var ruTags = ['ПАЛОМНИЧЕСТВО','КОРПОРАТИВ','МЕДИЦИНА','В РАБОТЕ','ПАЛОМНИЧЕСТВО','КОРПОРАТИВ','МЕДИЦИНА','В РАБОТЕ'];
+  var arTags = ['حج وعمرة','شركة','طب','قيد التنفيذ','حج وعمرة','شركة','طب','قيد التنفيذ'];
+  var ruLabels = ['VISIT ARAVIA','ВЕБ-ПРОЕКТ 2025','REHABMEN','НОВЫЙ ПРОЕКТ','VISIT ARAVIA','ВЕБ-ПРОЕКТ 2025','REHABMEN','НОВЫЙ ПРОЕКТ'];
+  var arLabels = ['VISIT ARAVIA','مشروع ويب 2025','REHABMEN','مشروع جديد','VISIT ARAVIA','مشروع ويب 2025','REHABMEN','مشروع جديد'];
+  document.querySelectorAll('.photo-item-tag').forEach(function(el,i){ el.textContent = isAr ? arTags[i] : ruTags[i]; });
+  document.querySelectorAll('.photo-item-label').forEach(function(el,i){ el.textContent = isAr ? arLabels[i] : ruLabels[i]; });
+
+    // Calc extras translation
+  var ruExtras = ['+Анимации и интерактив','+Подключение оплаты','+Google Analytics','+SEO-оптимизация','+Контент (тексты + фото)','+Домен + хостинг 1 год','+Интеграция CRM','+Двуязычность AR/RU','+WhatsApp-бот','+Pop-up окна'];
+  var arExtras = ['+الحركات والتفاعل','+ربط الدفع','+Google Analytics','+تحسين SEO','+محتوى (نصوص + صور)','+نطاق + استضافة سنة','+تكامل CRM','+ثنائية اللغة AR/RU','+بوت واتساب','+نوافذ منبثقة'];
+  document.querySelectorAll('#calcExtras .calc-toggle').forEach(function(btn, i) {
+    btn.textContent = isAr ? arExtras[i] : ruExtras[i];
+  });
+
+  // Show/hide "10 months in Riyadh" stat (only relevant in Arabic)
+  var stat2 = document.getElementById('heroStat2');
+  if (stat2) stat2.style.display = isAr ? 'block' : 'none';
+
+  updateCalc();
+  setTimeout(updateParallax, 50);
+  try { localStorage.setItem('lang', lang); } catch(e) {}
+}
+
+// Init language
+try {
+  var saved = localStorage.getItem('lang');
+  if (saved && saved !== 'ru') switchLang(saved);
+} catch(e) {}
+
+// ── PARALLAX SCROLL ──
+(function() {
+  var ticking = false;
+  function updateParallax() {
+    document.querySelectorAll('[data-parallax]').forEach(function(section) {
+      var rect = section.getBoundingClientRect();
+      var vh = window.innerHeight;
+      if (rect.bottom < -200 || rect.top > vh + 200) return;
+      var centerDiff = (rect.top + rect.height / 2) - vh / 2;
+      var shift = centerDiff * -0.18;
+      var bg = section.querySelector('.parallax-bg');
+      if (bg) bg.style.transform = 'translateY(' + shift + 'px)';
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+  }, { passive: true });
+  window.addEventListener('resize', updateParallax);
+  requestAnimationFrame(updateParallax);
+})();
+
+// ── CUSTOM CURSOR ──
+(function() {
+  var dot  = document.getElementById('cursorDot');
+  var ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+  // target (actual mouse) and current (lerped ring) positions
+  var mx = -200, my = -200;
+  var rx = -200, ry = -200;
+  var visible = false;
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX;
+    my = e.clientY;
+    if (!visible) {
+      rx = mx; ry = my;
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+      visible = true;
+    }
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  });
+  // Keep cursor visible at last position (don't hide on scroll/mouseleave)
+  document.addEventListener('mouseleave', function() {
+    setTimeout(function() { dot.style.opacity='0'; ring.style.opacity='0'; }, 300);
+    visible = false;
+  });
+  document.addEventListener('mouseenter', function() {
+    dot.style.opacity = '1'; ring.style.opacity = '1'; visible = true;
+  });
+  // Enlarge on interactive elements
+  document.querySelectorAll('a,button,.calc-toggle,.reject-item,.project-card,.photo-item').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      dot.style.width='14px'; dot.style.height='14px';
+      ring.style.width='52px'; ring.style.height='52px';
+    });
+    el.addEventListener('mouseleave', function() {
+      dot.style.width='8px'; dot.style.height='8px';
+      ring.style.width='32px'; ring.style.height='32px';
+    });
+  });
+  // rAF lerp — ring smoothly follows mouse
+  (function loop() {
+    rx += (mx - rx) * 0.1;
+    ry += (my - ry) * 0.1;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
