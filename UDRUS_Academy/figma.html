@@ -1,0 +1,426 @@
+<!DOCTYPE html><html translate="no" class="notranslate"><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><style>.lt{background:#F4F0E6;color:#1A1712;font-family:'IBM Plex Sans',sans-serif;position:relative;z-index:5}
+.lt-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 48px;border-bottom:1px dashed #C9BDA6}
+.lt-top .l{display:flex;align-items:center;gap:12px}.lt-top .l b{font:700 30px/1 'Aref Ruqaa';color:#B88A2E}.lt-top .l span{font:300 19px 'Literata'}
+.lt-top .c{display:flex;align-items:center;gap:16px}.lt-top .c div{line-height:1.35}.lt-top .c small{display:block;font:500 11px 'IBM Plex Sans';letter-spacing:.14em;text-transform:uppercase;color:#6F6656}.lt-top .c em{font:300 italic 22px 'Literata';font-style:italic}
+.lt-top .r{justify-self:end;display:flex;gap:10px}.lt-btn{font:500 13px 'IBM Plex Sans';letter-spacing:.06em;text-transform:uppercase;padding:12px 18px;border:1px solid #1A1712;border-radius:40px;color:#1A1712;text-decoration:none}
+.lt-btn.dark{background:#1A1712;color:#F4F0E6}
+.lt-bot{display:flex;justify-content:space-between;align-items:center;padding:40px 48px;border-top:1px dashed #C9BDA6}
+.lt-bot .n{display:flex;align-items:center;gap:18px}.lt-bot .n small{display:block;font:500 11px 'IBM Plex Sans';letter-spacing:.14em;text-transform:uppercase;color:#6F6656}.lt-bot .n em{font:300 italic 34px 'Literata'} *{animation:none!important;transition:none!important}</style></head><body><div class="lt lt-top" aria-label="Оболочка письма — шапка"><div class="l"><b>دالير</b><span>Dalir Mansurov</span></div><div class="c"><svg width="64" height="64" viewBox="-34 -34 68 68" style="display:block"><path d="M0-30C9-31 14-27 20-24S31-14 30-4 31 12 25 19 12 31 2 30-12 32-19 26-31 15-30 4-32-11-25-18-10-30 0-30Z" fill="#7A4A2C"></path><circle r="19" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5"></circle><text x="0" y="8" text-anchor="middle" font-family="Literata" font-size="22" fill="rgba(255,255,255,.85)">U</text><path d="M-6-31L2-12-5 2 4 14-2 31" stroke="#F4F0E6" stroke-width="3.2" fill="none"></path></svg><div><small>Письмо № 02 · 2026</small><em>от UDRUS Academy</em></div></div><div class="r"><a class="lt-btn" href="#">Сложить письмо ✕</a></div></div>
+<title>UDRUS Academy</title>
+<meta name="google" content="notranslate">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800;900&amp;family=Inter:wght@400;500;600&amp;family=Amiri:wght@400;700&amp;family=Noto+Naskh+Arabic:wght@400;600&amp;family=Manrope:wght@500;700;800&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+  /* Классическая книга знания: в центре матн, на полях хашия (комментарий).
+     Кейс устроен так же: в центре живой сайт UDRUS, на полях мои дизайнерские решения. Главы — «баб». Токены взяты из style.css сайта. */
+  :root{
+    --bg:#1A0F0A; --bg2:#231409; --surface:#2C1A10; --surface2:#3A2418;
+    --gold:#C9A96E; --gold2:#E8C98A; --beige:#F5ECD7; --muted:#B8A898; --accent:#8B5A2B;
+    --line:rgba(201,169,110,.18); --line2:rgba(201,169,110,.35);
+    --f-h:"Montserrat",system-ui,sans-serif; --f-b:"Inter",system-ui,-apple-system,sans-serif;
+    --f-ar:"Amiri","Noto Naskh Arabic","Geeza Pro",serif; --f-ar2:"Noto Naskh Arabic","Amiri",serif;
+    --f-shell:"Manrope",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --gut:clamp(16px,4.5vw,64px); --maxw:1240px;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--muted);font-family:var(--f-b);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  main{overflow-x:clip}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  h1,h2,h3,p,figure,blockquote{margin:0}
+  button{font:inherit;color:inherit}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+  [lang="ar"]{font-family:var(--f-ar)}
+
+  /* ——— оболочка портфолио ——— */
+  .glass{background:rgba(20,11,7,.62);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);border:1px solid rgba(255,255,255,.12);color:#fff}
+  .shell{position:fixed;z-index:50;top:calc(env(safe-area-inset-top,0px) + 14px);left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:2px;padding:5px;border-radius:999px;font-family:var(--f-shell);font-weight:500;font-size:.84rem;max-width:calc(100% - 32px)}
+  .shell a{text-decoration:none;padding:8px 14px;border-radius:999px;white-space:nowrap;transition:background .25s}
+  .shell a:hover{background:rgba(255,255,255,.1)}
+  .shell .me{font-weight:800;display:flex;align-items:center;gap:8px}
+  .shell .me i{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  .shell .on{background:rgba(255,255,255,.13)}
+  @media(max-width:560px){.shell .opt{display:none}}
+  .station{position:fixed;z-index:50;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;align-items:center;gap:10px;padding:8px 14px 8px 12px;border-radius:999px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;max-width:calc(100% - 32px);white-space:nowrap;overflow:hidden}
+  .station i{flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,169,110,.22)}
+  .station .geo{color:var(--gold2);font-family:var(--f-ar);font-size:.95rem;letter-spacing:0}
+  @media(max-width:560px){.station .geo{display:none}}
+
+  .s{position:relative;padding-block:clamp(110px,12vw,180px)}
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut);position:relative;z-index:1}
+  .bab{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .bab .ar{font-family:var(--f-ar);font-size:1.35rem;color:var(--gold);line-height:1}
+  .bab .ru{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .bab::before{content:"";width:28px;height:1px;background:var(--gold);opacity:.7}
+  .h2{font-family:var(--f-h);font-size:clamp(2.1rem,5vw,4.2rem);line-height:1.06;letter-spacing:-.02em;font-weight:800;color:var(--beige);margin-top:.5em;text-wrap:balance;max-width:18ch;text-transform:uppercase}
+  .h2 em{font-style:normal;color:var(--gold)}
+  .lede{font-size:clamp(1.05rem,1.3vw,1.2rem);max-width:58ch;margin-top:1.3em}
+  .cap{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;color:rgba(184,168,152,.75);margin-top:12px}
+  .stamp{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  .stamp.mine{background:var(--gold);color:var(--bg)}
+  .stamp i{width:6px;height:6px;border-radius:50%;background:currentColor}
+  .rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 30%,var(--gold2) 50%,var(--gold) 70%,transparent);opacity:.6}
+
+  /* ——— 00 HERO ——— */
+  .s-hero{min-height:min(100vh,980px);display:grid;align-items:center;padding-block:clamp(120px,12vw,160px) clamp(70px,8vw,110px);overflow:hidden;background:radial-gradient(60% 50% at 50% 42%,rgba(139,90,43,.38),transparent 70%),var(--bg)}
+  /* фон первого экрана: страница рукописи — рамка-джадваль, линовка мистары и хашия на полях, которая пишется справа налево */
+  .ms{position:absolute;inset:clamp(78px,8vw,96px) var(--gut) clamp(20px,3vw,36px);pointer-events:none}
+  .ms-frame{position:absolute;inset:0;border:1px solid var(--line2);clip-path:inset(50% 50% 50% 50%);animation:open 2.2s cubic-bezier(.6,0,.2,1) .15s forwards}
+  .ms-frame::before{content:"";position:absolute;inset:7px;border:1px solid rgba(201,169,110,.5)}
+  .ms-frame i{position:absolute;width:9px;height:9px;background:var(--gold);transform:rotate(45deg);opacity:.85}
+  .ms-frame i:nth-child(1){left:-5px;top:-5px}.ms-frame i:nth-child(2){right:-5px;top:-5px}.ms-frame i:nth-child(3){left:-5px;bottom:-5px}.ms-frame i:nth-child(4){right:-5px;bottom:-5px}
+  .ms-rule{position:absolute;inset:7px;background:repeating-linear-gradient(180deg,transparent 0 37px,rgba(201,169,110,.075) 37px 38px);-webkit-mask:radial-gradient(70% 60% at 50% 48%,transparent 30%,#000 75%);mask:radial-gradient(70% 60% at 50% 48%,transparent 30%,#000 75%);opacity:0;animation:fade 1.6s 1.2s forwards}
+  @keyframes open{to{clip-path:inset(0 0 0 0)}}
+  @keyframes fade{to{opacity:1}}
+  .hw{position:absolute;top:50%;width:min(330px,23vw);font-family:var(--f-ar);color:var(--gold);font-size:clamp(1.05rem,1.5vw,1.45rem);line-height:2.1;text-align:center;opacity:.7}
+  .hw.l{left:3.2%;transform:translateY(-58%) rotate(-32deg)}
+  .hw.r{right:3.2%;transform:translateY(-58%) rotate(32deg)}
+  .hw p{clip-path:inset(0 0 0 100%);animation:write 1.5s cubic-bezier(.45,0,.2,1) forwards;animation-delay:calc(1.4s + var(--i)*.55s)}
+  .hw .src{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;color:var(--muted);direction:ltr}
+  .hw .sep{height:1px;background:var(--gold);opacity:.5;width:40%;margin:6px auto}
+  @keyframes write{to{clip-path:inset(0 0 0 0)}}
+  @media(max-width:1240px){.hw{display:none}}
+  @media(max-width:720px){.ms{left:8px;right:8px}.s-hero .wrap{padding-inline:30px}}
+  .hero-in{text-align:center;display:grid;justify-items:center;gap:6px}
+  .hero-logo{width:clamp(90px,10vw,130px);height:auto;filter:drop-shadow(0 10px 30px rgba(0,0,0,.5));animation:rise 1s .2s both}
+  .hero-title{font-family:var(--f-h);font-weight:900;font-size:clamp(3rem,9.5vw,8.6rem);line-height:.95;letter-spacing:-.02em;color:var(--beige);text-transform:uppercase;margin-top:18px;animation:rise 1s .35s both}
+  .hero-title span{display:block;background:linear-gradient(180deg,#F1D8A0,#C9A96E 55%,#8B5A2B);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-ar{font-family:var(--f-ar);font-size:clamp(2rem,4.6vw,3.6rem);color:var(--gold);line-height:1.5;animation:rise 1s .5s both}
+  .hero-sub{max-width:46ch;font-size:clamp(1.02rem,1.3vw,1.15rem);animation:rise 1s .65s both}
+  .hero-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:clamp(56px,7vw,90px);padding-top:22px;border-top:1px solid var(--line2);text-align:left;width:100%}
+  .hero-meta dt{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,168,152,.7);margin-bottom:.45em}
+  .hero-meta dd{margin:0;color:var(--beige);font-weight:500}
+  @media(max-width:720px){.hero-meta{grid-template-columns:1fr 1fr}}
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+  /* ——— 01 ЗАДАЧА ——— */
+  .s-task{background:var(--bg2)}
+  .statement{font-family:var(--f-h);font-size:clamp(1.9rem,4.4vw,3.8rem);line-height:1.12;letter-spacing:-.02em;font-weight:600;color:var(--beige);max-width:21ch;margin-top:.5em;text-wrap:balance}
+  .statement em{font-style:normal;color:var(--gold)}
+  .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--line2)}
+  .fact{padding:22px 22px 22px 0}
+  .fact + .fact{padding-left:22px;border-left:1px solid var(--line2)}
+  .fact-k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+  .fact-v{margin-top:.5em;color:var(--beige);font-size:1.03rem}
+  @media(max-width:760px){.facts{grid-template-columns:1fr}.fact + .fact{padding-left:0;border-left:0;border-top:1px solid var(--line2)}}
+  .quote{margin-top:clamp(60px,8vw,110px);text-align:center;display:grid;gap:10px;justify-items:center}
+  .quote .ar{font-family:var(--f-ar);font-size:clamp(1.8rem,4vw,3rem);color:var(--gold);line-height:1.7}
+  .quote .ru{max-width:52ch}
+
+  /* ——— 02 ШАРХ (хашия на полях) ——— */
+  .s-sharh{background:var(--bg)}
+  .folio{position:relative;margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.6fr) minmax(0,1fr);gap:clamp(16px,2.4vw,36px);align-items:center}
+  .folio .matn{position:relative;border:1px solid var(--line2);padding:clamp(8px,1vw,14px);border-radius:6px;background:var(--bg2)}
+  .folio .matn::before{content:"";position:absolute;inset:6px;border:1px solid var(--line);border-radius:3px;pointer-events:none}
+  .folio .matn img{border-radius:3px;width:100%;height:auto}
+  .mk{position:absolute;width:28px;height:28px;margin:-14px 0 0 -14px;border-radius:50%;background:var(--gold);color:var(--bg);font-family:var(--f-ar);font-weight:700;font-size:1rem;display:grid;place-items:center;box-shadow:0 0 0 6px rgba(201,169,110,.2);cursor:pointer;border:0;transition:transform .3s,box-shadow .3s;line-height:1}
+  .mk[aria-pressed="true"]{transform:scale(1.25);box-shadow:0 0 0 10px rgba(201,169,110,.28)}
+  .margin{display:grid;gap:14px}
+  .note{border-top:1px solid var(--line2);padding-top:12px;cursor:pointer;transition:opacity .3s;opacity:.55;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;width:100%}
+  .note[aria-pressed="true"]{opacity:1}
+  .note .n{font-family:var(--f-ar);color:var(--gold);font-size:1.25rem;line-height:1}
+  .note b{display:block;color:var(--beige);font-weight:600;font-size:.98rem;margin-top:4px;font-family:var(--f-h)}
+  .note span{display:block;font-size:.88rem;line-height:1.5;margin-top:4px}
+  #leader{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+  #leader path{fill:none;stroke:var(--gold);stroke-width:1.2;stroke-dasharray:4 5}
+  @media(max-width:900px){.mk{width:20px;height:20px;margin:-10px 0 0 -10px;font-size:.8rem;box-shadow:0 0 0 4px rgba(201,169,110,.2)}.folio{grid-template-columns:1fr}.folio .margin.l{order:2}.folio .margin.r{order:3}.folio .matn{order:1}#leader{display:none}.note{opacity:1}}
+
+  /* ——— 03 КАРТА ЗНАНИЙ ——— */
+  .s-map{background:var(--bg2)}
+  .kmap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(24px,4vw,56px);margin-top:clamp(40px,5vw,64px);align-items:start}
+  @media(max-width:900px){.kmap{grid-template-columns:1fr}}
+  .ustaz-list{display:grid;gap:8px}
+  .u{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;align-items:center;text-align:left;background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:14px;padding:8px 14px 8px 8px;cursor:pointer;transition:background .3s,border-color .3s}
+  .u:hover{background:rgba(201,169,110,.06)}
+  .u[aria-pressed="true"]{background:rgba(201,169,110,.12);border-color:var(--gold)}
+  .u .ph{width:52px;height:52px;border-radius:50%;overflow:hidden;background:var(--surface2);display:grid;place-items:center;border:1px solid var(--line2)}
+  .u .ph img{width:100%;height:100%;object-fit:cover}
+  .u .ph em{font-style:normal;font-family:var(--f-h);font-weight:800;color:var(--gold);font-size:1rem;letter-spacing:.02em}
+  .u b{display:block;color:var(--beige);font-family:var(--f-h);font-weight:600;font-size:.98rem}
+  .u span{display:block;font-size:.84rem}
+  .week{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .day{border:1px solid var(--line2);border-radius:16px;padding:14px;background:var(--bg)}
+  .day h3{font-family:var(--f-h);font-weight:800;text-transform:uppercase;font-size:.9rem;letter-spacing:.08em;color:var(--bg);background:var(--gold);display:inline-block;padding:4px 10px;border-radius:6px}
+  .day .ar{font-family:var(--f-ar);color:var(--gold);float:right;font-size:1.1rem;line-height:1.4}
+  .slot{margin-top:12px;border-left:2px solid var(--line2);padding:6px 0 6px 12px;transition:border-color .35s,background .35s,opacity .35s;border-radius:0 8px 8px 0}
+  .slot time{font-family:var(--f-mono);font-size:.78rem;color:var(--gold)}
+  .slot b{display:block;color:var(--beige);font-weight:600;font-size:.95rem;font-family:var(--f-h)}
+  .slot .ar{float:none;display:block;font-size:1rem;color:rgba(201,169,110,.8)}
+  .slot span{font-size:.82rem}
+  .week.focus .slot{opacity:.35}
+  .week.focus .slot.hit{opacity:1;border-color:var(--gold);background:rgba(201,169,110,.1)}
+  @media(max-width:620px){.week{grid-template-columns:1fr}}
+  .pick-card{margin-top:14px;display:flex;gap:16px;align-items:center;border:1px dashed var(--line2);border-radius:16px;padding:14px 16px}
+  .pick-card .ph{width:64px;height:64px;border-radius:50%;overflow:hidden;flex:0 0 auto;background:var(--surface2);display:grid;place-items:center;border:1px solid var(--gold)}
+  .pick-card .ph img{width:100%;height:100%;object-fit:cover}
+  .pick-card .ph em{font-style:normal;font-family:var(--f-h);font-weight:800;color:var(--gold)}
+  .pick-card b{color:var(--beige);font-family:var(--f-h)}
+  .note-mono{font-family:var(--f-mono);font-size:.72rem;color:rgba(184,168,152,.7);margin-top:12px}
+
+  /* ——— 04 ЖИВОЙ САЙТ ——— */
+  .s-live{background:var(--bg)}
+  .live-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+  .live{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,3vw,40px);align-items:end;margin-top:clamp(36px,5vw,56px)}
+  @media(max-width:900px){.live{grid-template-columns:1fr}.phone{justify-self:center}}
+  .browser{border-radius:16px;overflow:hidden;border:1px solid var(--line2);background:#120A06;box-shadow:0 50px 100px -40px rgba(0,0,0,.85)}
+  .b-bar{display:flex;align-items:center;gap:6px;padding:10px 12px 0;background:#24150D;overflow-x:auto;scrollbar-width:none}
+  .b-bar::-webkit-scrollbar{display:none}
+  .b-dots{display:flex;gap:7px;padding:0 10px 10px 4px}
+  .b-dots i{width:10px;height:10px;border-radius:50%;background:#4A3020}
+  .b-tab{flex:0 0 auto;border:0;background:transparent;color:var(--muted);font-family:var(--f-mono);font-size:.74rem;padding:9px 16px 11px;border-radius:10px 10px 0 0;cursor:pointer;white-space:nowrap;position:relative;transition:background .25s,color .25s}
+  .b-tab[aria-selected="true"]{background:#120A06;color:var(--beige)}
+  .b-tab[aria-selected="true"]::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;border-radius:2px;background:var(--gold);transform-origin:left;animation:tabprog var(--t,7s) linear forwards}
+  .browser.paused .b-tab::after{animation:none;transform:scaleX(1)}
+  @keyframes tabprog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .b-url{display:flex;gap:10px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-size:.72rem}
+  .b-url b{font-weight:400;color:var(--beige)}
+  .b-view{position:relative;aspect-ratio:1440/860;overflow:hidden;background:var(--bg)}
+  .b-pane{position:absolute;inset:0;opacity:0;transition:opacity .6s}
+  .b-pane.on{opacity:1}
+  .b-pane img{width:100%;height:auto;will-change:transform}
+  .b-pane.on img{animation:scrollshot var(--d,14s) ease-in-out .9s forwards}
+  @keyframes scrollshot{to{transform:translateY(var(--ty,-50%))}}
+  .phone{width:min(240px,62vw);aspect-ratio:9/19.5;border-radius:34px;padding:9px;background:#0B0604;border:1px solid var(--line2);box-shadow:0 40px 80px -30px rgba(0,0,0,.8)}
+  .phone .scr{width:100%;height:100%;border-radius:26px;overflow:hidden;position:relative;background:var(--bg)}
+  .phone img{width:100%;height:auto;animation:phonescroll 60s linear infinite paused}
+  .phone.run img{animation-play-state:running}
+  @keyframes phonescroll{0%,3%{transform:translateY(0)}97%,100%{transform:translateY(calc(-100% + 460px))}}
+  .live-note{margin-top:22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:.95rem}
+  .live-note a{color:var(--beige);text-underline-offset:3px}
+
+  /* ——— 05 СЕМИНАР ——— */
+  .s-sem{background:radial-gradient(60% 60% at 80% 30%,rgba(139,90,43,.3),transparent 70%),var(--bg2)}
+  .sem{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,5vw,80px);align-items:start;margin-top:clamp(40px,5vw,64px)}
+  @media(max-width:900px){.sem{grid-template-columns:1fr}}
+  .sem-ar{font-family:var(--f-ar);font-size:clamp(3.2rem,9vw,7rem);color:var(--gold);line-height:1.3;direction:rtl;text-align:right}
+  .sem-list{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:0}
+  .sem-list li{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px solid var(--line2);font-size:.98rem}
+  .sem-list li:last-child{border-bottom:1px solid var(--line2)}
+  .sem-list b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:400;padding-top:.25em}
+  .sem-list span{color:var(--beige)}
+  .covers{display:grid;gap:16px}
+  .cover{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line2)}
+  .cover img{width:100%;height:auto;transition:transform .8s cubic-bezier(.2,.7,.1,1)}
+  .cover:hover img{transform:scale(1.03)}
+  .cover figcaption{position:absolute;left:12px;bottom:12px;font-family:var(--f-mono);font-size:.7rem;color:var(--beige);background:rgba(20,11,7,.75);padding:5px 10px;border-radius:999px}
+  .audio{margin-top:20px;display:flex;gap:14px;align-items:center;border:1px solid var(--line2);border-radius:14px;padding:14px 16px}
+  .wave{display:flex;gap:3px;align-items:center;height:28px;flex:1}
+  .wave i{flex:1;background:var(--gold);border-radius:2px;opacity:.75;height:var(--h);animation:eq 1.2s ease-in-out infinite alternate;animation-delay:var(--d)}
+  @keyframes eq{to{height:calc(var(--h)*.35)}}
+
+  .ltabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+  .ltab{border:1px solid var(--line2);background:transparent;border-radius:999px;padding:8px 14px;cursor:pointer;font-family:var(--f-h);font-weight:600;font-size:.82rem;color:var(--muted);display:inline-flex;gap:8px;align-items:center;transition:background .3s,color .3s,border-color .3s}
+  .ltab .ar{font-family:var(--f-ar);font-size:1rem;color:var(--gold);line-height:1}
+  .ltab .c{font-family:var(--f-mono);font-size:.68rem;opacity:.7}
+  .ltab[aria-selected="true"]{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+  .ltab[aria-selected="true"] .ar{color:var(--bg)}
+  .llist{list-style:none;padding:0;margin:18px 0 0;min-height:340px;border-top:1px solid var(--line2)}
+  .llist li{display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);animation:lin .5s both;animation-delay:calc(var(--i)*60ms)}
+  .llist .n{font-family:var(--f-ar);color:var(--gold);font-size:1.1rem}
+  .llist b{color:var(--beige);font-weight:500;font-size:.98rem}
+  .llist .t{font-size:.8rem;font-family:var(--f-mono);color:rgba(184,168,152,.8);text-align:right}
+  @keyframes lin{from{opacity:0;transform:translateY(8px)}}
+  @media(max-width:560px){.llist li{grid-template-columns:2em minmax(0,1fr)}.llist .t{grid-column:2;text-align:left}}
+  .au-n{flex:0 0 auto;font-size:.85rem}.au-n b{color:var(--gold);font-family:var(--f-h)}
+  .sem .sem-ar{margin-top:28px;opacity:.55}
+  .creel{overflow:hidden;margin-top:clamp(40px,5vw,64px);-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .creel + .creel{margin-top:16px}
+  .creel-track{display:flex;gap:16px;width:max-content;animation:creel var(--dur,60s) linear infinite;animation-play-state:paused}
+  .creel.run .creel-track{animation-play-state:running}
+  .creel.rev .creel-track{animation-direction:reverse}
+  .creel:hover .creel-track{animation-play-state:paused}
+  @keyframes creel{to{transform:translateX(-50%)}}
+  .cvr{position:relative;margin:0;width:clamp(280px,34vw,480px);aspect-ratio:900/506;border-radius:14px;overflow:hidden;border:1px solid var(--line2);flex:0 0 auto}
+  .cvr img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.1,1)}
+  .cvr:hover img{transform:scale(1.04)}
+  .cvr figcaption{position:absolute;left:10px;bottom:10px;font-family:var(--f-mono);font-size:.68rem;color:var(--beige);background:rgba(20,11,7,.8);padding:5px 10px;border-radius:999px;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+  .cvr:hover figcaption{opacity:1;transform:none}
+  @media(hover:none){.cvr figcaption{opacity:1;transform:none}}
+
+  /* ——— 06 ИТОГ ——— */
+  .s-result{background:var(--bg)}
+  .done{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:clamp(40px,5vw,64px)}
+  @media(max-width:900px){.done{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.done{grid-template-columns:1fr}}
+  .done > div{border:1px solid var(--line2);border-radius:16px;padding:20px;background:var(--bg2)}
+  .done b{display:block;font-family:var(--f-h);font-size:clamp(2.6rem,5vw,3.8rem);font-weight:900;color:var(--gold);letter-spacing:-.03em;line-height:1}
+  .done span{display:block;margin-top:10px;font-size:.92rem}
+  .cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin-top:clamp(80px,10vw,140px);font-family:var(--f-shell)}
+  .cta p{font-size:clamp(1.6rem,3.4vw,2.8rem);line-height:1.1;letter-spacing:-.03em;color:var(--beige);font-weight:500;max-width:20ch}
+  @media(max-width:720px){.cta{grid-template-columns:1fr}}
+  .btn{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:var(--bg);text-decoration:none;font-family:var(--f-h);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.9rem;padding:17px 28px;border-radius:10px;transition:transform .2s,background .2s;justify-self:start}
+  .btn:hover{background:var(--gold2);transform:translateY(-2px)}
+  .next{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:clamp(64px,8vw,110px);padding-top:24px;border-top:1px solid var(--line2);text-decoration:none;font-family:var(--f-shell)}
+  .next span{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .next b{font-size:clamp(1.8rem,4.2vw,3.4rem);letter-spacing:-.035em;font-weight:800;color:var(--beige)}
+  .next:hover b{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px}
+  .foot{background:var(--bg);color:var(--muted);padding:28px var(--gut) calc(84px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--f-mono);font-size:.72rem;border-top:1px solid var(--line)}
+
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.ms-frame,.hw p{clip-path:none}.ms-rule{opacity:1}}
+</style>
+
+
+
+
+<main translate="no">
+
+<!-- 00 -->
+<section class="s s-hero" data-st="Вступление" data-geo="المقدمة">
+  <div class="ms" aria-hidden="true">
+    <div class="ms-frame"><i></i><i></i><i></i><i></i></div>
+    <div class="ms-rule"></div>
+    <div class="hw l" lang="ar" dir="rtl">
+      <p style="--i:0">مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا</p>
+      <p style="--i:1">سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ</p>
+      <p style="--i:2" class="src">رواه مسلم</p>
+    </div>
+    <div class="hw r" lang="ar" dir="rtl">
+      <p style="--i:1">الْعُلَمَاءُ وَرَثَةُ الْأَنْبِيَاءِ</p>
+      <p style="--i:2" class="sep"></p>
+      <p style="--i:3">الفقه · العقيدة · النحو</p>
+      <p style="--i:4">أصول الفقه · الأدب · الحفظ</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="hero-in">
+      <img class="hero-logo" src="assets/logo-udrus-icon-gold.png" alt="Знак UDRUS Academy: открытая книга и буква U" width="323" height="317">
+      <h1 class="hero-title">Академия <span>UDRUS</span></h1>
+      <p class="hero-ar" lang="ar" dir="rtl">أكاديمية ادرس</p>
+      <p class="hero-sub">Онлайн-академия шариатских наук, которую ведут студенты Саудовской Аравии.</p>
+    </div>
+    <dl class="hero-meta">
+      <div><dt>Клиент</dt><dd>UDRUS Academy</dd></div>
+      <div><dt>Кейс</dt><dd>Дизайн и разработка сайта</dd></div>
+      <div><dt>Формат</dt><dd>Живой сайт</dd></div>
+      <div><dt>Стек</dt><dd>HTML, CSS, JS · GitHub Pages</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 01 -->
+<section class="s s-task" data-st="01 · Задача" data-geo="الباب الأول">
+  <div class="wrap">
+    <p class="bab"><span class="ar" lang="ar">الباب الأول</span><span class="ru">Глава 01 · Задача</span></p>
+    <p class="statement">Все уроки из Telegram <em>в одной библиотеке</em>, которая открывается в любом браузере.</p>
+    <div class="facts">
+      <div class="fact"><div class="fact-k">Задача</div><div class="fact-v">Уроки академии жили только в Telegram. Он работал нестабильно, а каждое аудио приходилось скачивать и занимать им память телефона.</div></div>
+      <div class="fact"><div class="fact-k">Аудитория</div><div class="fact-v">Русскоязычные мусульмане, которые изучают шариатские науки онлайн и слушают уроки с телефона.</div></div>
+      <div class="fact"><div class="fact-k">Решение</div><div class="fact-v">Сайт как база знаний: уроки разложены по дисциплинам и устазам, аудио слушается прямо на странице, без скачивания.</div></div>
+    </div>
+    <div class="quote">
+      <p class="ar" lang="ar" dir="rtl">«طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ»</p>
+      <p class="ru">«Стремление к знанию — обязанность каждого мусульманина» (Ибн Маджа).</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="s s-sharh" data-st="02 · Первый экран" data-geo="الباب الثاني">
+  <div class="wrap">
+    <p class="bab"><span class="ar" lang="ar">الباب الثاني</span><span class="ru">Глава 02 · Первый экран</span></p>
+    <h2 class="h2">Матн в центре, <em>решения на полях</em></h2>
+    <p class="lede">В классических книгах вокруг основного текста пишут комментарий. Так же разобран главный экран: в центре живой сайт, на полях — почему он устроен именно так.</p>
+    <div class="folio" id="folio">
+      <svg id="leader" aria-hidden="true"><path id="leaderPath" d="M226.71875 18 C413.6796875 18 413.6796875 143.203125 600.640625 143.203125"></path></svg>
+      <div class="margin l"><button class="note" type="button" data-i="0" aria-pressed="true"><span class="n" lang="ar">١</span><b>Знак: книга и буква U</b><span>Открытая книга держит букву U. Знак читается и в фавиконке 16 пикселей.</span></button><button class="note" type="button" data-i="1" aria-pressed="false"><span class="n" lang="ar">٢</span><b>Montserrat 900, капсом</b><span>Тяжёлый гротеск держит экран без иллюстраций. Кириллица и латиница в одном наборе.</span></button><button class="note" type="button" data-i="2" aria-pressed="false"><span class="n" lang="ar">٣</span><b>Telegram — главная кнопка</b><span>Академия живёт в Telegram, поэтому кнопка залита цветом. YouTube — вторая, контуром.</span></button></div>
+      <figure class="matn" id="matn">
+        <img src="assets/hero-shot.webp" alt="Главный экран academy-udrus.ru: знак, заголовок «Академия UDRUS», арабская надпись и кнопки Telegram и YouTube" width="1440" height="900">
+        <button class="mk" type="button" data-i="0" aria-pressed="true" aria-label="Пометка 1: Знак: книга и буква U" style="left:57.6%;top:21.5%">١</button><button class="mk" type="button" data-i="1" aria-pressed="false" aria-label="Пометка 2: Montserrat 900, капсом" style="left:25.0%;top:43.6%">٢</button><button class="mk" type="button" data-i="2" aria-pressed="false" aria-label="Пометка 3: Telegram — главная кнопка" style="left:29.0%;top:77.6%">٣</button><button class="mk" type="button" data-i="3" aria-pressed="false" aria-label="Пометка 4: Арабский под каждым заголовком" style="left:61.4%;top:51.8%">٤</button><button class="mk" type="button" data-i="4" aria-pressed="false" aria-label="Пометка 5: Коричневый #1A0F0A и золото #C9A96E" style="left:88.0%;top:68.0%">٥</button>
+      </figure>
+      <div class="margin r"><button class="note" type="button" data-i="3" aria-pressed="false"><span class="n" lang="ar">٤</span><b>Арабский под каждым заголовком</b><span>Noto Naskh и Amiri дублируют заголовки. Для аудитории это знак, что знания идут из первоисточника.</span></button><button class="note" type="button" data-i="4" aria-pressed="false"><span class="n" lang="ar">٥</span><b>Коричневый #1A0F0A и золото #C9A96E</b><span>Цвета переплёта старой книги. Белый только для главного заголовка, остальное в беже и золоте.</span></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="s s-map" data-st="03 · Устазы" data-geo="الباب الثالث">
+  <div class="wrap">
+    <p class="bab"><span class="ar" lang="ar">الباب الثالث</span><span class="ru">Глава 03 · Устазы и расписание</span></p>
+    <h2 class="h2">Кто, что и <em>когда</em> преподаёт</h2>
+    <p class="lede">На сайте устазы, дисциплины и расписание — три отдельных блока. Здесь они связаны: выберите устаза, и неделя покажет его уроки.</p>
+    <div class="kmap">
+      <div class="ustaz-list" role="group" aria-label="Устазы" id="ulist"><button class="u" type="button" id="u0" data-i="0" aria-pressed="true"><span class="ph"><img src="assets/t-rashid.webp" alt="" width="64" height="64"></span><span><b>Рашид Кумукий</b><span>Фикх ханбалитский</span></span></button><button class="u" type="button" id="u1" data-i="1" aria-pressed="false"><span class="ph"><img src="assets/t-shamgodi.webp" alt="" width="64" height="64"></span><span><b>Мухаммад Шамгоди</b><span>Нахву · Фикх шафиитский</span></span></button><button class="u" type="button" id="u2" data-i="2" aria-pressed="false"><span class="ph"><em>МШ</em></span><span><b>Муслим Шанкыти</b><span>Акыда</span></span></button><button class="u" type="button" id="u3" data-i="3" aria-pressed="false"><span class="ph"><em>КА</em></span><span><b>Курбан Абу Бакр</b><span>Мусталях · Сделки</span></span></button><button class="u" type="button" id="u4" data-i="4" aria-pressed="false"><span class="ph"><img src="assets/t-hasan.webp" alt="" width="64" height="64"></span><span><b>Хасан Абу Марьям</b><span>Адаб</span></span></button><button class="u" type="button" id="u5" data-i="5" aria-pressed="false"><span class="ph"><em>АМ</em></span><span><b>Абу Муаз ад-Дагестани</b><span>Усуль аль-фикх</span></span></button><button class="u" type="button" id="u6" data-i="6" aria-pressed="false"><span class="ph"><img src="assets/t-faizudin.webp" alt="" width="64" height="64"></span><span><b>Файзудин Казанищенский</b><span>Основы веры</span></span></button></div>
+      <div>
+        <div class="week focus" id="week"><div class="day"><h3>Четверг</h3><span class="ar" lang="ar">الخميس</span><div class="slot hit" data-u="0"><time>16:30</time><b>Ханбалитский фикх</b><span class="ar" lang="ar" dir="rtl">الفقه الحنبلي</span><span>Рашид Кумукий</span></div><div class="slot" data-u="2"><time>17:30</time><b>Акыда</b><span class="ar" lang="ar" dir="rtl">العقيدة</span><span>Муслим Шанкыти</span></div></div><div class="day"><h3>Пятница</h3><span class="ar" lang="ar">الجمعة</span><div class="slot" data-u="1"><time>13:30</time><b>Шафиитский фикх</b><span class="ar" lang="ar" dir="rtl">الفقه الشافعي</span><span>Мухаммад Шамгоди</span></div><div class="slot" data-u="4"><time>17:30</time><b>Адаб</b><span class="ar" lang="ar" dir="rtl">الأدب</span><span>Хасан Абу Марьям</span></div></div><div class="day"><h3>Суббота</h3><span class="ar" lang="ar">السبت</span><div class="slot" data-u="1"><time>13:30</time><b>Шафиитский фикх</b><span class="ar" lang="ar" dir="rtl">الفقه الشافعي</span><span>Мухаммад Шамгоди</span></div><div class="slot" data-u="1"><time>16:30</time><b>Нахву</b><span class="ar" lang="ar" dir="rtl">النحو</span><span>Мухаммад Шамгоди</span></div><div class="slot" data-u="5"><time>17:30</time><b>Усуль аль-фикх</b><span class="ar" lang="ar" dir="rtl">أصول الفقه</span><span>Абу Муаз ад-Дагестани</span></div></div></div>
+        <div class="pick-card" id="pick" aria-live="polite"><span class="ph"><img src="assets/t-rashid.webp" alt="" width="64" height="64"></span><span><b>Рашид Кумукий</b><br><span>Фикх ханбалитский · уроков в неделю: 1</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="s s-live" data-st="04 · Живой сайт" data-geo="الباب الرابع">
+  <div class="wrap">
+    <div class="live-head">
+      <div>
+        <p class="bab"><span class="ar" lang="ar">الباب الرابع</span><span class="ru">Глава 04 · Моя работа</span></p>
+        <h2 class="h2">Живой сайт, <em>19 страниц</em></h2>
+      </div>
+      <span class="stamp mine"><i></i>Дизайн и разработка</span>
+    </div>
+    <div class="live">
+      <div class="browser" id="browser">
+        <div class="b-bar" role="tablist" aria-label="Страницы сайта">
+          <span class="b-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <button class="b-tab" type="button" role="tab" aria-selected="true" data-p="" tabindex="0" style="--t: 23800ms;">Главная</button><button class="b-tab" type="button" role="tab" aria-selected="false" data-p="seminar.html" tabindex="-1">Семинар</button><button class="b-tab" type="button" role="tab" aria-selected="false" data-p="lessons.html" tabindex="-1">Уроки</button><button class="b-tab" type="button" role="tab" aria-selected="false" data-p="archive.html" tabindex="-1">Архив</button><button class="b-tab" type="button" role="tab" aria-selected="false" data-p="hifz.html" tabindex="-1">Школа хифза</button>
+        </div>
+        <div class="b-url"><span aria-hidden="true">🔒</span><b id="bUrl">academy-udrus.ru/</b></div>
+        <div class="b-view"><div class="b-pane on" role="tabpanel" aria-label="Главная" style="--ty:-92.95%;--d:22.0s"><img src="assets/full-index.webp" alt="Страница «Главная» сайта UDRUS целиком" width="900" height="7628" decoding="async" style=""></div><div class="b-pane" role="tabpanel" aria-label="Семинар" style="--ty:-82.97%;--d:9.1s"><img src="assets/full-seminar.webp" alt="Страница «Семинар» сайта UDRUS целиком" width="900" height="3156" decoding="async" style=""></div><div class="b-pane" role="tabpanel" aria-label="Уроки" style="--ty:-83.64%;--d:9.5s"><img src="assets/full-lessons.webp" alt="Страница «Уроки» сайта UDRUS целиком" width="900" height="3286" decoding="async" style=""></div><div class="b-pane" role="tabpanel" aria-label="Архив" style="--ty:-72.73%;--d:6s"><img src="assets/full-archive.webp" alt="Страница «Архив» сайта UDRUS целиком" width="900" height="1971" decoding="async" style=""></div><div class="b-pane" role="tabpanel" aria-label="Школа хифза" style="--ty:-76.12%;--d:6.5s"><img src="assets/full-hifz.webp" alt="Страница «Школа хифза» сайта UDRUS целиком" width="900" height="2251" decoding="async" style=""></div></div>
+      </div>
+      <div class="phone" id="phone" aria-label="Мобильная версия главной страницы"><div class="scr"><img src="assets/mob-index.webp" alt="Мобильная версия главной страницы UDRUS целиком" width="390" height="14208"></div></div>
+    </div>
+    <div class="live-note"><span>Сайт</span><a href="https://academy-udrus.ru/" target="_blank" rel="noopener">academy-udrus.ru</a></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="s s-sem" data-st="05 · Уроки" data-geo="الباب الخامس">
+  <div class="wrap">
+    <p class="bab"><span class="ar" lang="ar">الباب الخامس</span><span class="ru">Глава 05 · Уроки</span></p>
+    <div class="sem">
+      <div>
+        <h2 class="h2" style="font-size:clamp(2rem,3.6vw,3.2rem)">Уроки <em>по направлениям</em></h2>
+        <p class="lede">На сайте уроки разложены по темам. Выбираете направление и смотрите урок прямо на странице.</p>
+        <div class="audio"><span class="stamp mine" style="flex:0 0 auto">Архив</span><span class="wave" aria-hidden="true"><i style="--h:16px;--d:-1.14s"></i><i style="--h:18px;--d:-0.78s"></i><i style="--h:8px;--d:-0.99s"></i><i style="--h:9px;--d:-0.44s"></i><i style="--h:7px;--d:-1.09s"></i><i style="--h:12px;--d:-0.04s"></i><i style="--h:19px;--d:-0.50s"></i><i style="--h:13px;--d:-0.11s"></i><i style="--h:19px;--d:-0.07s"></i><i style="--h:24px;--d:-0.15s"></i><i style="--h:13px;--d:-0.76s"></i><i style="--h:24px;--d:-1.14s"></i><i style="--h:24px;--d:-0.70s"></i><i style="--h:7px;--d:-1.17s"></i><i style="--h:7px;--d:-0.67s"></i><i style="--h:10px;--d:-0.35s"></i><i style="--h:10px;--d:-0.65s"></i><i style="--h:24px;--d:-0.37s"></i><i style="--h:27px;--d:-0.22s"></i><i style="--h:24px;--d:-0.69s"></i><i style="--h:12px;--d:-0.45s"></i><i style="--h:23px;--d:-0.85s"></i><i style="--h:24px;--d:-0.07s"></i><i style="--h:12px;--d:-0.60s"></i><i style="--h:23px;--d:-0.51s"></i><i style="--h:16px;--d:-0.56s"></i><i style="--h:20px;--d:-0.43s"></i><i style="--h:13px;--d:-0.95s"></i><i style="--h:28px;--d:-0.94s"></i><i style="--h:8px;--d:-0.69s"></i><i style="--h:22px;--d:-0.59s"></i><i style="--h:16px;--d:-0.88s"></i><i style="--h:15px;--d:-0.73s"></i><i style="--h:8px;--d:-0.14s"></i><i style="--h:19px;--d:-0.20s"></i><i style="--h:16px;--d:-0.18s"></i><i style="--h:21px;--d:-0.51s"></i><i style="--h:27px;--d:-0.09s"></i><i style="--h:23px;--d:-0.69s"></i><i style="--h:16px;--d:-0.41s"></i><i style="--h:17px;--d:-0.71s"></i><i style="--h:24px;--d:-0.96s"></i><i style="--h:8px;--d:-1.01s"></i><i style="--h:14px;--d:-0.57s"></i><i style="--h:27px;--d:-0.08s"></i><i style="--h:28px;--d:-0.37s"></i><i style="--h:24px;--d:-1.19s"></i><i style="--h:20px;--d:-0.34s"></i><i style="--h:18px;--d:-1.06s"></i><i style="--h:17px;--d:-0.03s"></i><i style="--h:20px;--d:-0.43s"></i><i style="--h:25px;--d:-0.14s"></i><i style="--h:7px;--d:-0.26s"></i><i style="--h:15px;--d:-0.16s"></i><i style="--h:13px;--d:-0.48s"></i><i style="--h:21px;--d:-0.10s"></i></span><span class="au-n"><b>53</b> аудиоурока</span></div>
+        <p class="cap">Акыда, усуль аль-фикх, нахву и адаб слушаются прямо на сайте, без Telegram и без скачивания на телефон.</p>
+        <p class="sem-ar" lang="ar" aria-hidden="true">الدروس</p>
+      </div>
+      <div>
+        <div class="ltabs" role="tablist" aria-label="Направления уроков" id="ltabs" style="margin-top:0"><button class="ltab" type="button" role="tab" aria-selected="true" data-i="0"><span class="ar" lang="ar">طلب العلم</span>Требование знания<span class="c">6</span></button><button class="ltab" type="button" role="tab" aria-selected="false" data-i="1"><span class="ar" lang="ar">العقيدة</span>Основы веры<span class="c">8</span></button><button class="ltab" type="button" role="tab" aria-selected="false" data-i="2"><span class="ar" lang="ar">رمضان</span>Рамадан<span class="c">6</span></button><button class="ltab" type="button" role="tab" aria-selected="false" data-i="3"><span class="ar" lang="ar">الحج</span>Хадж<span class="c">4</span></button><button class="ltab" type="button" role="tab" aria-selected="false" data-i="4"><span class="ar" lang="ar">متفرقات</span>Разные темы<span class="c">4</span></button><button class="ltab" type="button" role="tab" aria-selected="false" data-i="5"><span class="ar" lang="ar">القرآن</span>Коран<span class="c">1</span></button></div>
+        <ol class="llist" id="llist" aria-live="polite"><li style="--i:0"><span class="n">١</span><b>Ключи к успеху требующего знания — Урок 1</b><span class="t">Файзудин Казанищенский</span></li><li style="--i:1"><span class="n">٢</span><b>Ключи к успеху требующего знания — Урок 2</b><span class="t">Файзудин Казанищенский</span></li><li style="--i:2"><span class="n">٣</span><b>Ключи к успеху требующего знания — Урок 3</b><span class="t">Файзудин Казанищенский</span></li><li style="--i:3"><span class="n">٤</span><b>Ключи к успеху требующего знания — Урок 4</b><span class="t">Файзудин Казанищенский</span></li><li style="--i:4"><span class="n">٥</span><b>Ключи к успеху требующего знания — Урок 5</b><span class="t">Файзудин Казанищенский</span></li><li style="--i:5"><span class="n">٦</span><b>Ключи к успеху требующего знания — Урок 6</b><span class="t">Файзудин Казанищенский</span></li></ol>
+      </div>
+    </div>
+  </div>
+  <div class="creel" aria-label="Обложки уроков">
+    <div class="creel-track" style="--dur:60s"><figure class="cvr"><img src="assets/cover-0.webp" alt="Обложка урока «Фикх для детей · молитва №1», Рашид Кумукий" width="900" height="506"><figcaption>Фикх для детей · молитва №1 · Рашид Кумукий</figcaption></figure><figure class="cvr"><img src="assets/cover-2.webp" alt="Обложка урока «Большие грехи · урок 3», Файзудин Казанищенский" width="900" height="506"><figcaption>Большие грехи · урок 3 · Файзудин Казанищенский</figcaption></figure><figure class="cvr"><img src="assets/cover-3.webp" alt="Обложка урока «Важность сохранения знаний», Хасан Абу Марьям" width="900" height="506"><figcaption>Важность сохранения знаний · Хасан Абу Марьям</figcaption></figure><figure class="cvr"><img src="assets/cover-4.webp" alt="Обложка урока «Ключи к успеху требующего знания», Файзудин Казанищенский" width="900" height="506"><figcaption>Ключи к успеху требующего знания · Файзудин Казанищенский</figcaption></figure><figure class="cvr" aria-hidden="true"><img src="assets/cover-0.webp" alt="" width="900" height="506"><figcaption>Фикх для детей · молитва №1 · Рашид Кумукий</figcaption></figure><figure class="cvr" aria-hidden="true"><img src="assets/cover-2.webp" alt="" width="900" height="506"><figcaption>Большие грехи · урок 3 · Файзудин Казанищенский</figcaption></figure><figure class="cvr" aria-hidden="true"><img src="assets/cover-3.webp" alt="" width="900" height="506"><figcaption>Важность сохранения знаний · Хасан Абу Марьям</figcaption></figure><figure class="cvr" aria-hidden="true"><img src="assets/cover-4.webp" alt="" width="900" height="506"><figcaption>Ключи к успеху требующего знания · Файзудин Казанищенский</figcaption></figure></div>
+  </div>
+  <div class="creel rev" aria-hidden="false">
+    <div class="creel-track" style="--dur:72s"><figure class="cvr"><img src="assets/cover-1.webp" alt="Обложка урока «Ответственность слов», Мухаммад Шамгоди" width="900" height="506"><figcaption>Ответственность слов · Мухаммад Шамгоди</figcaption></figure><figure class="cvr"><img src="assets/cover-5.webp" alt="Обложка урока «Книга Аллаха», Мухаммад Шамгоди" width="900" height="506"><figcaption>Книга Аллаха · Мухаммад Шамгоди</figcaption></figure><figure class="cvr"><img src="assets/cover-6.webp" alt="Обложка урока «Провизия Рамадана · урок 4», Мухаммад Шамгоди" width="900" height="506"><figcaption>Провизия Рамадана · урок 4 · Мухаммад Шамгоди</figcaption></figure><figure class="cvr"><img src="assets/cover-7.webp" alt="Обложка урока «Фикх для детей · омовение №2», Рашид Кумукий" width="900" height="506"><figcaption>Фикх для детей · омовение №2 · Рашид Кумукий</figcaption></figure><figure class="cvr" aria-hidden="true"><img src="assets/cover-1.webp" alt="" width="900" height="506"><figcaption>Ответственность слов · Мухаммад Шамгоди</figcaption></figure><figure class="cvr" aria-hidden="true"><img src="assets/cover-5.webp" alt="" width="900" height="506"><figcaption>Книга Аллаха · Мухаммад Шамгоди</figcaption></figure><figure class="cvr" aria-hidden="true"><img src="assets/cover-6.webp" alt="" width="900" height="506"><figcaption>Провизия Рамадана · урок 4 · Мухаммад Шамгоди</figcaption></figure><figure class="cvr" aria-hidden="true"><img src="assets/cover-7.webp" alt="" width="900" height="506"><figcaption>Фикх для детей · омовение №2 · Рашид Кумукий</figcaption></figure></div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="s s-result" data-st="06 · Итог" data-geo="الخاتمة">
+  <div class="wrap">
+    <p class="bab"><span class="ar" lang="ar">الخاتمة</span><span class="ru">Заключение</span></p>
+    <h2 class="h2">Что <em>сделано</em></h2>
+    <div class="done">
+      <div><b>19</b><span>страниц: главная, уроки, архив, семинар, школа хифза, страницы дисциплин</span></div>
+      <div><b>7</b><span>устазов с дисциплинами и расписанием</span></div>
+      <div><b>53</b><span>урока в архиве: акыда, усуль аль-фикх, нахву, адаб</span></div>
+      <div><b>29</b><span>видеоуроков в шести направлениях</span></div>
+    </div>
+    <div class="cta">
+      <p>Нужен сайт для образовательного проекта, где <span style="color:var(--gold)">важна точность</span>?</p>
+      <a class="btn" href="#">Обсудить проект →</a>
+    </div>
+    <a class="next" href="#"><span>Следующий кейс</span><b>Visit Aravia →</b></a>
+  </div>
+</section>
+
+</main>
+<footer translate="no" class="foot"><span>Dalir · дизайн и разработка сайтов</span><span>Кейс UDRUS Academy</span></footer>
+
+
+
+<div class="lt lt-bot" aria-label="Оболочка письма — низ"><a class="lt-btn" href="#">↑ Вернуться ко всем письмам</a><div class="n"><div style="text-align:right"><small>Следующее письмо</small><em>Mentor Labs</em></div><svg width="64" height="64" viewBox="-34 -34 68 68" style="display:block"><path d="M0-30C9-31 14-27 20-24S31-14 30-4 31 12 25 19 12 31 2 30-12 32-19 26-31 15-30 4-32-11-25-18-10-30 0-30Z" fill="#2A3C66"></path><circle r="19" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="1.5"></circle><text x="0" y="8" text-anchor="middle" font-family="Literata" font-size="22" fill="rgba(255,255,255,.85)">M</text></svg></div></div></body></html>
