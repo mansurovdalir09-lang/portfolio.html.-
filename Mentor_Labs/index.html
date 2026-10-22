@@ -1,0 +1,517 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mentor Labs</title>
+<meta name="google" content="notranslate">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Кейс читается как лабораторный отчёт: сетка с этикеток Mentor Labs, синие скобки видоискателя,
+     лазер-скан, одна синяя капсула среди чёрных. Оболочка портфолио (шапка, плашка главы) та же, что в кейсе Visit Aravia. */
+  :root{
+    --ink:#0B1020; --ink2:#0F1528; --surface:#141A2C; --panel:#1A2134; --line:rgba(140,160,210,.12); --line2:rgba(140,160,210,.22);
+    --blue:#2F7CFF; --blue2:#1E4FD8; --blue-g:rgba(47,124,255,.35);
+    --t1:#FFFFFF; --t2:#C9CDD6; --t3:#8B90A0;
+    --studio:#E3E4E6;
+    --f-d:"Onest","Inter",system-ui,sans-serif; --f-b:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --f-shell:"Manrope",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --gut:clamp(16px,4.5vw,64px); --maxw:1240px; --cell:120px;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--t2);font-family:var(--f-b);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  main{overflow-x:clip}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  h1,h2,h3,p,figure{margin:0}
+  button{font:inherit;color:inherit}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+  /* ——— оболочка портфолио (как в Visit Aravia) ——— */
+  .glass{background:rgba(10,14,26,.6);-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%);border:1px solid rgba(255,255,255,.12);color:#fff}
+  .shell{position:fixed;z-index:50;top:calc(env(safe-area-inset-top,0px) + 14px);left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:2px;padding:5px;border-radius:999px;font-family:var(--f-shell);font-weight:500;font-size:.84rem;max-width:calc(100% - 32px)}
+  .shell a{text-decoration:none;padding:8px 14px;border-radius:999px;white-space:nowrap;transition:background .25s}
+  .shell a:hover{background:rgba(255,255,255,.1)}
+  .shell .me{font-weight:800;display:flex;align-items:center;gap:8px}
+  .shell .me i{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+  .shell .on{background:rgba(255,255,255,.13)}
+  @media(max-width:560px){.shell .opt{display:none}}
+  .station{position:fixed;z-index:50;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;align-items:center;gap:10px;padding:8px 14px 8px 12px;border-radius:999px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;max-width:calc(100% - 32px);white-space:nowrap;overflow:hidden}
+  .station i{flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px rgba(47,124,255,.25)}
+  .station .geo{color:rgba(255,255,255,.55)}
+  @media(max-width:560px){.station .geo{display:none}}
+  .eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;display:flex;gap:.9em;align-items:center;color:var(--t3)}
+  .eyebrow::before{content:"";width:28px;height:1px;background:currentColor;opacity:.7}
+
+  /* ——— общее ——— */
+  .s{position:relative;padding-block:clamp(110px,12vw,180px)}
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut);position:relative;z-index:1}
+  .h2{font-family:var(--f-d);font-size:clamp(2.3rem,5.6vw,4.8rem);line-height:1.04;letter-spacing:-.03em;font-weight:500;color:var(--t1);margin-top:.45em;text-wrap:balance;max-width:17ch}
+  .h2 em{font-style:normal;color:var(--blue)}
+  .lede{font-size:clamp(1.05rem,1.3vw,1.2rem);max-width:56ch;margin-top:1.3em;color:var(--t2)}
+  .cap{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;color:var(--t3);margin-top:12px}
+  .grid-bg{background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:var(--cell) var(--cell);background-position:center top}
+  /* скобки видоискателя */
+  .vf{position:relative}
+  .vf::before,.vf::after,.vf > .c3,.vf > .c4{content:"";position:absolute;width:22px;height:22px;border:2px solid var(--blue);pointer-events:none;z-index:3}
+  .vf::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+  .vf::after{right:-1px;top:-1px;border-left:0;border-bottom:0}
+  .vf > .c3{left:-1px;bottom:-1px;border-right:0;border-top:0}
+  .vf > .c4{right:-1px;bottom:-1px;border-left:0;border-top:0}
+  .tag{display:inline-flex;align-items:center;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--blue2);border-radius:999px;padding:4px 11px}
+  .tag.ghost{background:transparent;border:1px solid var(--line2);color:var(--t2)}
+  .stamp{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  .stamp.mine{background:var(--blue);color:#fff}
+  .stamp.theirs{border:1px solid var(--line2);color:var(--t2)}
+  .stamp i{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+  /* ——— 00 HERO ——— */
+  .s-hero{padding-block:clamp(120px,13vw,170px) clamp(80px,9vw,120px);overflow:hidden;background:radial-gradient(60% 55% at 78% 40%,rgba(47,124,255,.16),transparent 70%),var(--ink)}
+  .s-hero .grid-bg{position:absolute;inset:0;z-index:0;-webkit-mask-image:radial-gradient(80% 70% at 60% 45%,#000 30%,transparent 85%);mask-image:radial-gradient(80% 70% at 60% 45%,#000 30%,transparent 85%)}
+  .cursor-vf{position:absolute;z-index:1;width:var(--cell);height:var(--cell);left:0;top:0;opacity:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .4s;pointer-events:none;background:rgba(47,124,255,.05)}
+  .s-hero:hover .cursor-vf{opacity:1}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,5vw,72px);align-items:center;margin-top:clamp(20px,3vw,36px)}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+  .logo-lock{height:clamp(46px,5vw,64px);width:auto}
+  .hero-title{font-family:var(--f-d);font-weight:600;font-size:clamp(4rem,11vw,9.6rem);line-height:.88;letter-spacing:-.045em;color:#fff;margin-top:.32em}
+  .hero-title span{display:block;color:var(--blue)}
+  .hero-sub{margin-top:28px;font-size:clamp(1.05rem,1.4vw,1.25rem);max-width:40ch;color:var(--t2)}
+  .scan-card{position:relative;aspect-ratio:1;background:#000;overflow:hidden}
+  .scan-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .laser{position:absolute;left:-6%;right:-6%;height:2px;top:12%;background:linear-gradient(90deg,transparent,#9cc2ff 15%,#fff 50%,#9cc2ff 85%,transparent);box-shadow:0 0 18px 4px rgba(47,124,255,.7),0 0 60px 10px rgba(47,124,255,.35);z-index:2;animation:sweep 3.6s cubic-bezier(.45,0,.55,1) infinite alternate;will-change:transform}
+  .laser::after{content:"";position:absolute;left:0;right:0;top:2px;height:90px;background:linear-gradient(rgba(47,124,255,.18),transparent)}
+  @keyframes sweep{from{transform:translateY(0)}to{transform:translateY(calc(var(--h,400px)*.76))}}
+  .readout{position:absolute;z-index:3;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;color:#cfe0ff;background:rgba(11,16,32,.72);border:1px solid rgba(47,124,255,.4);padding:5px 9px;border-radius:6px;white-space:nowrap}
+  .ro1{left:5%;top:7%} .ro2{right:5%;top:7%} .ro3{left:5%;bottom:7%} .ro4{right:5%;bottom:7%}
+  .hero-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:clamp(56px,7vw,96px);padding-top:22px;border-top:1px solid var(--line2)}
+  .hero-meta dt{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);margin-bottom:.45em}
+  .hero-meta dd{margin:0;color:#fff;font-weight:500}
+  @media(max-width:720px){.hero-meta{grid-template-columns:1fr 1fr}}
+
+  /* ——— 01 ЗАДАЧА ——— */
+  .s-task{background:linear-gradient(var(--ink),var(--ink2))}
+  .statement{font-family:var(--f-d);font-size:clamp(2rem,5vw,4.3rem);line-height:1.08;letter-spacing:-.03em;font-weight:400;color:#fff;max-width:20ch;margin-top:.5em;text-wrap:balance}
+  .statement em{font-style:normal;color:var(--blue)}
+  .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--line2)}
+  .fact{padding:22px 22px 22px 0}
+  .fact + .fact{padding-left:22px;border-left:1px solid var(--line2)}
+  .fact-k{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3)}
+  .fact-v{margin-top:.5em;color:#fff;font-size:1.05rem}
+  @media(max-width:760px){.facts{grid-template-columns:1fr}.fact + .fact{padding-left:0;border-left:0;border-top:1px solid var(--line2)}}
+
+  /* ——— 02 КАПСУЛЫ ——— */
+  .s-caps{padding:0;height:min(100vh,860px);min-height:560px;background:#05070D;overflow:hidden}
+  #caps{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+  .caps-copy{position:absolute;z-index:2;left:var(--gut);bottom:clamp(40px,7vw,90px);max-width:min(620px,calc(100% - 2*var(--gut)));pointer-events:none}
+  .caps-copy .h2{margin-top:.3em;text-shadow:0 2px 30px #05070D}
+  .caps-copy p{color:var(--t2);margin-top:14px;text-shadow:0 1px 16px #05070D}
+  .caps-hint{position:absolute;z-index:2;right:var(--gut);top:clamp(90px,10vw,120px);font-family:var(--f-mono);font-size:.72rem;color:var(--t3)}
+
+  /* ——— 03 ЛИНЕЙКА / СКАНЕР ——— */
+  .s-line{background:var(--ink2)}
+  .scanner{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,56px);margin-top:clamp(40px,5vw,64px);align-items:start}
+  @media(max-width:900px){.scanner{grid-template-columns:1fr}}
+  .lineup{position:relative;border-radius:22px;overflow:hidden;background:var(--studio)}
+  .lineup img{width:100%;height:auto}
+  .lineup .dim{position:absolute;inset:0;background:rgba(8,12,24,.42);pointer-events:none;transition:clip-path .7s cubic-bezier(.2,.8,.2,1);
+    clip-path:polygon(0 0,100% 0,100% 100%,0 100%,0 0,var(--x1) var(--y1),var(--x1) var(--y2),var(--x2) var(--y2),var(--x2) var(--y1),var(--x1) var(--y1))}
+  .target{position:absolute;left:var(--x1);top:var(--y1);width:calc(var(--x2) - var(--x1));height:calc(var(--y2) - var(--y1));transition:left .7s cubic-bezier(.2,.8,.2,1),top .7s cubic-bezier(.2,.8,.2,1),width .7s cubic-bezier(.2,.8,.2,1),height .7s cubic-bezier(.2,.8,.2,1);pointer-events:none;overflow:hidden}
+  .target .beam{position:absolute;left:0;right:0;height:2px;top:0;background:#fff;box-shadow:0 0 14px 3px rgba(47,124,255,.85);opacity:0}
+  .target.scan .beam{animation:beam .9s cubic-bezier(.4,0,.2,1)}
+  @keyframes beam{0%{top:0;opacity:1}100%{top:100%;opacity:.2}}
+  .lineup .lens-lbl{position:absolute;left:var(--x1);top:calc(var(--y1) - 30px);transition:left .7s cubic-bezier(.2,.8,.2,1),top .7s cubic-bezier(.2,.8,.2,1);font-family:var(--f-mono);font-size:.68rem;color:#fff;background:var(--blue);padding:3px 8px;border-radius:5px;white-space:nowrap}
+  .plist{display:grid;gap:8px}
+  .pbtn{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;text-align:left;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;transition:background .3s,border-color .3s}
+  .pbtn:hover{background:rgba(255,255,255,.06)}
+  .pbtn[aria-pressed="true"]{background:rgba(47,124,255,.12);border-color:rgba(47,124,255,.6)}
+  .pbtn .no{font-family:var(--f-mono);font-size:.7rem;color:var(--t3)}
+  .pbtn b{display:block;font-family:var(--f-d);font-weight:500;font-size:1.1rem;color:#fff;letter-spacing:-.01em}
+  .pbtn .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .pbtn .tags span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.06em;color:#cfe0ff;border:1px solid rgba(47,124,255,.45);border-radius:999px;padding:2px 8px}
+  .pbtn .pr{font-family:var(--f-mono);font-size:.82rem;color:#fff;white-space:nowrap}
+  .spec{margin-top:16px;border:1px solid var(--line2);border-radius:14px;padding:16px 18px;font-family:var(--f-mono);font-size:.78rem;color:var(--t2);display:grid;gap:6px}
+  .spec div{display:flex;justify-content:space-between;gap:12px}
+  .spec span:last-child{color:#fff;text-align:right}
+
+  /* ——— 04 МАКЕТЫ ——— */
+  .s-mock{background:linear-gradient(var(--ink2),var(--ink))}
+  .mock-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+  .browser{margin-top:clamp(36px,5vw,56px);border-radius:16px;overflow:hidden;border:1px solid var(--line2);background:#0A0E1A;box-shadow:0 50px 100px -40px rgba(0,0,0,.8)}
+  .b-bar{display:flex;align-items:center;gap:8px;padding:10px 12px 0;background:#121829;overflow-x:auto;scrollbar-width:none}
+  .b-bar::-webkit-scrollbar{display:none}
+  .b-dots{display:flex;gap:7px;padding:0 10px 10px 4px}
+  .b-dots i{width:10px;height:10px;border-radius:50%;background:#2A3350}
+  .b-tab{flex:0 0 auto;border:0;background:transparent;color:var(--t3);font-family:var(--f-mono);font-size:.74rem;padding:9px 16px 11px;border-radius:10px 10px 0 0;cursor:pointer;white-space:nowrap;transition:background .25s,color .25s;position:relative}
+  .b-tab[aria-selected="true"]{background:#0A0E1A;color:#fff}
+  .b-tab[aria-selected="true"]::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;border-radius:2px;background:var(--blue);transform-origin:left;animation:tabprog var(--t,6s) linear forwards}
+  .browser.paused .b-tab::after{animation-play-state:paused}
+  @keyframes tabprog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .b-url{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#0A0E1A;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-size:.72rem;color:var(--t3)}
+  .b-url b{font-weight:400;color:var(--t2)}
+  .b-view{position:relative;aspect-ratio:1440/860;overflow:hidden;background:#0B1020}
+  .b-pane{position:absolute;inset:0;opacity:0;transition:opacity .6s}
+  .b-pane.on{opacity:1}
+  .b-pane img{width:100%;height:auto}
+  .b-pane.tall.on img{animation:scrollshot var(--d,10s) ease-in-out .8s forwards}
+  @keyframes scrollshot{to{transform:translateY(var(--ty,-30%))}}
+  .note{display:flex;gap:14px;align-items:flex-start;margin-top:22px;padding:16px 18px;border:1px dashed var(--line2);border-radius:14px;font-size:.95rem;color:var(--t2)}
+  .note a{color:#fff;text-underline-offset:3px}
+
+  /* ——— 05 ДОВЕРИЕ ——— */
+  .s-trust{background:var(--ink)}
+  .trust-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(28px,5vw,80px);align-items:start;margin-top:clamp(40px,5vw,64px)}
+  @media(max-width:900px){.trust-grid{grid-template-columns:1fr}}
+  .points{display:grid;gap:12px}
+  .pt{border:1px solid var(--line2);border-radius:16px;padding:20px 22px}
+  .pt b{display:block;color:#fff;font-family:var(--f-d);font-weight:500;font-size:1.15rem}
+  .pt p{margin-top:6px;font-size:.95rem}
+  .pt .no{font-family:var(--f-mono);font-size:.7rem;color:var(--blue);letter-spacing:.08em}
+  .doc{position:relative;border-radius:10px;overflow:hidden;cursor:zoom-in;touch-action:none;box-shadow:0 40px 90px -30px rgba(0,0,0,.8);background:#fff}
+  .doc img{width:100%;height:auto}
+  .lens{position:absolute;width:clamp(150px,18vw,220px);aspect-ratio:1;border-radius:50%;border:2px solid var(--blue);box-shadow:0 0 0 6px rgba(47,124,255,.18),0 20px 40px rgba(0,0,0,.5);pointer-events:none;background-repeat:no-repeat;transform:translate(-50%,-50%);left:52%;top:27%}
+  .doc-cap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ——— 06 АЙДЕНТИКА БРЕНДА ——— */
+  .s-brand{background:linear-gradient(var(--ink),#05070D);padding-bottom:clamp(80px,9vw,130px)}
+  .reel{overflow:hidden;margin-top:30px;position:relative;contain:paint}
+  .reel::before,.reel::after{content:"";position:absolute;top:0;bottom:0;width:7%;z-index:2;pointer-events:none}
+  .reel::before{left:0;background:linear-gradient(90deg,#070A12,transparent)}
+  .reel::after{right:0;background:linear-gradient(-90deg,#070A12,transparent)}
+  .reel-track{display:flex;width:max-content;animation:reel var(--dur,80s) linear infinite paused;will-change:transform}
+  .reel.run .reel-track{animation-play-state:running}
+  .reel:hover .reel-track{animation-play-state:paused}
+  .reel.rev .reel-track{animation-direction:reverse}
+  @keyframes reel{to{transform:translate3d(-50%,0,0)}}
+  .reel figure{flex:0 0 auto;padding-right:18px}
+  .reel img{height:clamp(170px,22vw,280px);width:auto;border-radius:14px}
+
+  /* ——— 07 ИТОГ ——— */
+  .s-result{background:#05070D}
+  .done{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:clamp(40px,5vw,64px)}
+  @media(max-width:900px){.done{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.done{grid-template-columns:1fr}}
+  .done > div{border:1px solid var(--line2);border-radius:16px;padding:20px}
+  .done b{display:block;font-family:var(--f-d);font-size:clamp(2.4rem,5vw,3.6rem);font-weight:500;color:#fff;letter-spacing:-.04em;line-height:1}
+  .done span{display:block;margin-top:10px;font-size:.92rem}
+  .cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:end;margin-top:clamp(80px,10vw,140px);font-family:var(--f-shell)}
+  .cta p{font-size:clamp(1.6rem,3.4vw,2.8rem);line-height:1.1;letter-spacing:-.03em;color:#fff;font-weight:500;max-width:20ch}
+  @media(max-width:720px){.cta{grid-template-columns:1fr}}
+  .btn{display:inline-flex;align-items:center;gap:12px;background:var(--blue);color:#fff;text-decoration:none;font-family:var(--f-b);font-weight:600;font-size:1rem;padding:16px 28px;border-radius:12px;transition:background .2s,transform .2s,box-shadow .2s;justify-self:start}
+  .btn:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 6px 18px rgba(47,124,255,.25)}
+  .next{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:clamp(64px,8vw,110px);padding-top:24px;border-top:1px solid var(--line2);text-decoration:none;font-family:var(--f-shell)}
+  .next span{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3)}
+  .next b{font-size:clamp(1.8rem,4.2vw,3.4rem);letter-spacing:-.035em;font-weight:800;color:#fff}
+  .next b em{font-style:normal;color:var(--blue)}
+  .next:hover b{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px}
+  .foot{background:#05070D;color:var(--t3);padding:28px var(--gut) calc(84px + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--f-mono);font-size:.72rem;border-top:1px solid var(--line)}
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reel{overflow-x:auto}
+  }
+</style>
+
+<nav translate="no" class="shell glass" aria-label="Портфолио">
+  <a class="me" href="#"><i></i>Dalir</a>
+  <a class="on" href="#">← Все работы</a>
+  <a class="opt" href="#">Обо мне</a>
+  <a class="opt" href="#">Контакт</a>
+</nav>
+<div translate="no" class="station glass" aria-hidden="true"><i></i><span id="stName">Вступление</span><span class="geo" id="stGeo">SCAN 00 / 07</span></div>
+
+<main translate="no" translate="no">
+
+<!-- 00 -->
+<section class="s s-hero" data-st="Вступление" data-geo="SCAN 00 / 07" id="hero">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="cursor-vf vf" id="cvf" aria-hidden="true"><span class="c3"></span><span class="c4"></span></div>
+  <div class="wrap">
+    <p class="eyebrow">Кейс · Бренд добавок</p>
+    <div class="hero-grid">
+      <div>
+        <img class="logo-lock" src="assets/mntr-labs.svg" alt="mntr labs" width="115" height="78">
+        <h1 class="hero-title">Mentor<span>Labs</span></h1>
+        <p class="hero-sub">Бренд, который выпускает только добавки с научно доказанной эффективностью. Сайт-каталог, где это видно с первого экрана.</p>
+      </div>
+      <figure class="scan-card vf" id="scanCard"><span class="c3"></span><span class="c4"></span>
+        <img src="assets/s-zinc.webp" alt="Банка Mentor Labs Zinc Copper на чёрном фоне, сквозь неё проходит синий лазер" width="760" height="760">
+        <span class="laser" aria-hidden="true"></span>
+        <span class="readout ro1">ZINC + COPPER</span>
+        <span class="readout ro2" id="scanPct">SCAN 00%</span>
+        <span class="readout ro3">60 CAPSULES</span>
+        <span class="readout ro4">IMMUNITY · SKIN</span>
+      </figure>
+    </div>
+    <dl class="hero-meta">
+      <div><dt>Клиент</dt><dd>Mentor Labs</dd></div>
+      <div><dt>Роль</dt><dd>UI/UX-дизайн сайта</dd></div>
+      <div><dt>Формат</dt><dd>Дизайн-макет</dd></div>
+      <div><dt>Инструмент</dt><dd>Figma</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- 01 -->
+<section class="s s-task" data-st="01 · Задача" data-geo="SCAN 01 / 07">
+  <div class="wrap">
+    <p class="eyebrow">Глава 01 · Задача</p>
+    <p class="statement">Показать, что за каждой банкой стоит <em>исследование</em>, а не реклама.</p>
+    <div class="facts">
+      <div class="fact"><div class="fact-k">Задача</div><div class="fact-v">Сайт-каталог, где у каждой добавки видны эффекты, научные данные и документы.</div></div>
+      <div class="fact"><div class="fact-k">Аудитория</div><div class="fact-v">Те, кто следит за здоровьем и хочет понимать, что принимает: зачем добавка, сколько пить и с чем сочетать.</div></div>
+      <div class="fact"><div class="fact-k">Решение</div><div class="fact-v">Сетка, скобки и синий акцент с этикеток. У каждого эффекта на сайте есть ссылка на исследование.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section class="s s-caps" data-st="02 · Одна из многих" data-geo="SCAN 02 / 07" id="capsSec">
+  <canvas id="caps" aria-hidden="true"></canvas>
+  <span class="caps-hint" aria-hidden="true">Проведите курсором по капсулам</span>
+  <div class="caps-copy">
+    <p class="eyebrow">Глава 02 · Идея бренда</p>
+    <h2 class="h2">Добавок тысячи. <em>Нужные</em> — единицы.</h2>
+    <p>Главный образ бренда: одна синяя капсула среди чёрных. Mentor Labs выпускает только то, у чего есть доказательная база.</p>
+  </div>
+</section>
+
+<!-- 03 -->
+<section class="s s-line" data-st="03 · Линейка" data-geo="SCAN 03 / 07">
+  <div class="wrap">
+    <p class="eyebrow">Глава 03 · Линейка</p>
+    <h2 class="h2">Пять баночек, <em>пять задач</em></h2>
+    <p class="lede">Сила, сон, фокус, сердце, иммунитет. Выберите добавку, и сканер найдёт её на снимке линейки.</p>
+    <div class="scanner" id="scanner">
+      <div>
+        <figure class="lineup" id="lineup" style="--x1:24.6%;--y1:16.8%;--x2:59.2%;--y2:60.6%">
+          <img src="assets/p-lineup.webp" alt="Линейка Mentor Labs: креатин, витамин D3+K2, L-теанин, магний глицинат и таурин на сером подиуме" width="1100" height="1100" loading="lazy">
+          <span class="dim" aria-hidden="true"></span>
+          <span class="target vf" id="target"><span class="c3"></span><span class="c4"></span><span class="beam"></span></span>
+          <span class="lens-lbl" id="lensLbl" aria-hidden="true">LOCK · 01</span>
+        </figure>
+        <p class="cap">Фото: Mentor Labs</p>
+      </div>
+      <div>
+        <div class="plist" role="group" aria-label="Добавки" id="plist"></div>
+        <div class="spec" id="spec" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="s s-mock" data-st="04 · Дизайн-макет" data-geo="SCAN 04 / 07">
+  <div class="wrap">
+    <div class="mock-head">
+      <div>
+        <p class="eyebrow">Глава 04 · Моя работа</p>
+        <h2 class="h2">Четыре экрана <em>дизайн-макета</em></h2>
+      </div>
+      <span class="stamp mine"><i></i>Дизайн-макет</span>
+    </div>
+    <div class="browser" id="browser">
+      <div class="b-bar" role="tablist" aria-label="Экраны макета">
+        <span class="b-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <button class="b-tab" role="tab" id="tab0" aria-selected="true" aria-controls="pane0">Главная</button>
+        <button class="b-tab" role="tab" id="tab1" aria-selected="false" aria-controls="pane1">Научная база</button>
+        <button class="b-tab" role="tab" id="tab2" aria-selected="false" aria-controls="pane2">Госрегистрация</button>
+        <button class="b-tab" role="tab" id="tab3" aria-selected="false" aria-controls="pane3">Подвал</button>
+      </div>
+      <div class="b-url"><span>🔒</span><b id="bUrl">mentorlabs · главная</b></div>
+      <div class="b-view">
+        <div class="b-pane on" id="pane0" role="tabpanel" aria-labelledby="tab0"><img src="assets/m-labs-hero.webp" alt="Макет главной Mentor Labs: заголовок, кнопка «Посмотреть каталог» и банка L-теанина" width="1440" height="939" loading="lazy"></div>
+        <div class="b-pane tall" id="pane1" role="tabpanel" aria-labelledby="tab1" style="--ty:-38%;--d:7s"><img src="assets/m-labs-science.webp" alt="Макет страницы «Научные доказательства о БАДах»: эффекты креатина, исследования и видео" width="1200" height="1407" loading="lazy"></div>
+        <div class="b-pane" id="pane2" role="tabpanel" aria-labelledby="tab2"><img src="assets/m-labs-sgr.webp" alt="Макет блока «Государственная регистрация БАДов» со свидетельством" width="1440" height="939" loading="lazy"></div>
+        <div class="b-pane" id="pane3" role="tabpanel" aria-labelledby="tab3" style="background:#111318;display:grid;place-items:center"><img src="assets/m-labs-footer.webp" alt="Макет подвала Mentor Labs: навигация, документы, контакты" width="1400" height="710" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="s s-trust" data-st="05 · Документы" data-geo="SCAN 05 / 07">
+  <div class="wrap">
+    <p class="eyebrow">Глава 05 · Доверие</p>
+    <h2 class="h2">Доверие, <em>подтверждённое</em> печатью</h2>
+    <div class="trust-grid">
+      <div>
+        <figure class="doc" id="doc">
+          <img src="assets/sgr.webp" alt="Свидетельство о государственной регистрации продукции ЕАЭС на креатин моногидрат, № AM.01.04.01.007.R.000203.10.23 от 04.10.2023" width="628" height="851" loading="lazy">
+          <span class="lens" id="lens" aria-hidden="true"></span>
+        </figure>
+        <div class="doc-cap"><p class="cap">Свидетельство о госрегистрации · креатин моногидрат</p><p class="cap">Наведите, чтобы рассмотреть</p></div>
+      </div>
+      <div>
+        <p class="lede" style="margin-top:0">Каждая добавка Mentor Labs имеет свидетельство о государственной регистрации. На сайте под это отдан отдельный блок.</p>
+        <div class="points" style="margin-top:24px">
+          <div class="pt"><span class="no">01</span><b>Законность</b><p>Без СГР производство и продажа специализированных пищевых добавок запрещены.</p></div>
+          <div class="pt"><span class="no">02</span><b>Безопасность</b><p>Продукт прошёл лабораторные исследования и соответствует нормам Таможенного союза.</p></div>
+          <div class="pt"><span class="no">03</span><b>Свободное обращение</b><p>СГР действует во всех странах ЕАЭС: Россия, Беларусь, Казахстан, Армения, Киргизия.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="s s-brand" data-st="06 · Айдентика" data-geo="SCAN 06 / 07">
+  <div class="wrap">
+    <div class="mock-head">
+      <div>
+        <p class="eyebrow">Глава 06 · Мир бренда</p>
+        <h2 class="h2">Айдентика, в которую <em>вписан</em> сайт</h2>
+      </div>
+      <span class="stamp theirs"><i></i>Материалы бренда Mentor Labs</span>
+    </div>
+    <p class="lede">Сетка, синие скобки и одна синяя капсула среди чёрных. Сайт собран из тех же элементов, что этикетки и посты канала, поэтому баночку узнают и на полке, и на экране.</p>
+  </div>
+  <div class="reel"><div class="reel-track loop" style="--dur:70s">
+    <figure><img src="assets/b-logo.webp" alt="Логотип mntr labs в скобках видоискателя на сетке" width="900" height="679" loading="lazy"></figure>
+    <figure><img src="assets/p-capsules.webp" alt="Чёрные капсулы и одна синяя" width="1600" height="1067" loading="lazy"></figure>
+    <figure><img src="assets/p-magnesium.webp" alt="Магний глицинат на каменном подиуме" width="760" height="1140" loading="lazy"></figure>
+    <figure><img src="assets/b-values.webp" alt="Пост «Наши ценности»" width="900" height="613" loading="lazy"></figure>
+    <figure><img src="assets/p-scan.webp" alt="Белая капсула в синем луче сканера" width="1600" height="900" loading="lazy"></figure>
+  </div></div>
+  <div class="reel rev"><div class="reel-track loop" style="--dur:84s">
+    <figure><img src="assets/p-d3.webp" alt="Витамин D3+K2 на голубом фоне, пост розыгрыша" width="1000" height="1000" loading="lazy"></figure>
+    <figure><img src="assets/p-shelf.webp" alt="Ряд банок магния глицината на полке" width="1280" height="720" loading="lazy"></figure>
+    <figure><img src="assets/b-giveaway.webp" alt="Пост «Розыгрыш»" width="900" height="598" loading="lazy"></figure>
+    <figure><img src="assets/p-partner.webp" alt="Мини-приложение «Стань партнёром MntrLabs»" width="1280" height="720" loading="lazy"></figure>
+    <figure><img src="assets/p-taurine.webp" alt="Таурин на сером фоне" width="1000" height="1000" loading="lazy"></figure>
+  </div></div>
+</section>
+
+<!-- 07 -->
+<section class="s s-result" data-st="07 · Итог" data-geo="SCAN 07 / 07">
+  <div class="wrap">
+    <p class="eyebrow">Глава 07 · Итог</p>
+    <h2 class="h2">Что <em>сделано</em></h2>
+    <div class="done">
+      <div><b>4</b><span>экрана дизайн-макета: главная, научная база, госрегистрация, подвал</span></div>
+      <div><b>6</b><span>добавок в линейке, под каждую — эффекты и исследования</span></div>
+      <div><b>1</b><span>UI-кит: цвета, Inter, кнопки, сетка 1200px</span></div>
+      <div><b>100%</b><span>добавок со свидетельством о госрегистрации, для этого на сайте отдельный блок</span></div>
+    </div>
+    <div class="cta">
+      <p>Нужен сайт, которому верят <span style="color:var(--blue)">по фактам</span>?</p>
+      <a class="btn" href="#">Обсудить проект →</a>
+    </div>
+    <a class="next" href="#"><span>Следующий кейс</span><b>Mentor <em>Community</em> →</b></a>
+  </div>
+</section>
+
+</main>
+<footer translate="no" class="foot"><span>Dalir · дизайн и разработка сайтов</span><span>Кейс Mentor Labs</span></footer>
+
+<script>try{document.documentElement.setAttribute("translate","no");document.documentElement.classList.add("notranslate")}catch(e){}
+
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hover=window.matchMedia&&matchMedia('(hover:hover)').matches;
+  function clamp(v,a,b){return v<a?a:v>b?b:v}
+
+  /* дубли для бесконечных лент */
+  [].forEach.call(document.querySelectorAll('.loop'),function(tr){
+    [].slice.call(tr.children).forEach(function(c){var k=c.cloneNode(true);k.setAttribute('aria-hidden','true');
+      [].forEach.call(k.querySelectorAll('img'),function(i){i.alt='';});tr.appendChild(k);});
+  });
+
+  /* плашка главы */
+  var stN=document.getElementById('stName'),stG=document.getElementById('stGeo'),secs=[].slice.call(document.querySelectorAll('[data-st]')),cur=null;
+  function station(){var m=innerHeight/2;for(var i=0;i<secs.length;i++){var r=secs[i].getBoundingClientRect();if(r.top<=m&&r.bottom>m){if(cur!==secs[i]){cur=secs[i];stN.textContent=cur.dataset.st;stG.textContent=cur.dataset.geo;}break;}}}
+  var tk=false;addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;station();});}},{passive:true});station();
+
+  /* видоискатель по сетке */
+  var hero=document.getElementById('hero'),cvf=document.getElementById('cvf');
+  if(hover&&!reduce){hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect(),cell=120;
+    var ox=(r.width/2)%cell; var x=Math.floor((e.clientX-r.left-ox)/cell)*cell+ox, y=Math.floor((e.clientY-r.top)/cell)*cell;
+    cvf.style.transform='translate('+x+'px,'+y+'px)';});}
+
+  /* скан в hero */
+  var card=document.getElementById('scanCard'),pct=document.getElementById('scanPct');
+  function setH(){card.style.setProperty('--h',card.clientHeight+'px');} setH(); addEventListener('resize',setH);
+  if(!reduce){var t0=performance.now();(function loop(t){var p=((t-t0)%7200)/7200;var v=p<.5?p*2:2-p*2;v=v<.5?2*v*v:1-Math.pow(-2*v+2,2)/2;
+    pct.textContent='SCAN '+String(Math.round(v*100)).padStart(2,'0')+'%';requestAnimationFrame(loop);})(t0);}
+
+  /* капсулы */
+  var cv=document.getElementById('caps'),sec=document.getElementById('capsSec'),ctx=cv.getContext('2d'),W=0,H=0,dpr=1,caps=[],mx=-9999,my=-9999,running=false,raf=0;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);W=sec.clientWidth;H=sec.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);seed();}
+  function seed(){caps=[];var n=Math.round(clamp(W*H/26000,18,46)),rnd=mulberry(7);
+    for(var i=0;i<n;i++){var s=clamp(W/1400,.55,1)*(0.75+rnd()*0.6);
+      var hx=rnd()*W,hy=rnd()*H; caps.push({hx:hx,hy:hy,x:hx,y:hy,vx:0,vy:0,a:rnd()*Math.PI,ha:0,va:0,L:118*s,R:30*s,blue:false,ph:rnd()*6.28});}
+    var b=caps[Math.floor(caps.length/2)];b.blue=true;b.hx=W*.62;b.hy=H*.42;b.x=b.hx;b.y=b.hy;b.L*=1.25;b.R*=1.25;b.a=-.35;
+    caps.forEach(function(c){c.ha=c.a;});}
+  function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+  function capsule(c,t){var L=c.L,R=c.R;ctx.save();ctx.translate(c.x,c.y);ctx.rotate(c.a);
+    var g=ctx.createLinearGradient(0,-R,0,R);
+    if(c.blue){g.addColorStop(0,'#5E9BFF');g.addColorStop(.35,'#2F7CFF');g.addColorStop(1,'#1238B8');ctx.shadowColor='rgba(47,124,255,.85)';ctx.shadowBlur=40+10*Math.sin(t/600);}
+    else{g.addColorStop(0,'#3A3F4A');g.addColorStop(.28,'#121419');g.addColorStop(1,'#000');ctx.shadowColor='rgba(0,0,0,.6)';ctx.shadowBlur=18;}
+    ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(-L/2+R,-R);ctx.lineTo(L/2-R,-R);ctx.arc(L/2-R,0,R,-Math.PI/2,Math.PI/2);ctx.lineTo(-L/2+R,R);ctx.arc(-L/2+R,0,R,Math.PI/2,Math.PI*1.5);ctx.closePath();ctx.fill();
+    ctx.shadowBlur=0;ctx.strokeStyle=c.blue?'rgba(255,255,255,.25)':'rgba(255,255,255,.08)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,-R+2);ctx.lineTo(0,R-2);ctx.stroke();
+    ctx.fillStyle=c.blue?'rgba(255,255,255,.55)':'rgba(255,255,255,.16)';ctx.beginPath();ctx.ellipse(-L*.08,-R*.52,L*.3,R*.12,0,0,Math.PI*2);ctx.fill();
+    ctx.restore();}
+  function frame(t){ctx.clearRect(0,0,W,H);
+    for(var i=0;i<caps.length;i++){var c=caps[i];
+      var dx=c.x-mx,dy=c.y-my,d2=dx*dx+dy*dy,rad=170;
+      if(d2<rad*rad){var d=Math.sqrt(d2)||1,f=(1-d/rad)*2.6;c.vx+=dx/d*f;c.vy+=dy/d*f;c.va+=(dx>0?1:-1)*f*.004;}
+      var wob=c.blue?0:Math.sin(t/1700+c.ph)*6;
+      c.vx+=(c.hx-c.x)*.012;c.vy+=(c.hy+wob-c.y)*.012;c.va+=(c.ha-c.a)*.01;
+      c.vx*=.88;c.vy*=.88;c.va*=.9;c.x+=c.vx;c.y+=c.vy;c.a+=c.va;}
+    for(var j=0;j<caps.length;j++)if(!caps[j].blue)capsule(caps[j],t);
+    for(var k=0;k<caps.length;k++)if(caps[k].blue)capsule(caps[k],t);
+    if(running)raf=requestAnimationFrame(frame);}
+  sec.addEventListener('pointermove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+  sec.addEventListener('pointerleave',function(){mx=my=-9999;});
+  size();addEventListener('resize',size);
+  if(reduce){frame(0);}
+  else if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting&&!running){running=true;raf=requestAnimationFrame(frame);}else if(!e.isIntersecting){running=false;cancelAnimationFrame(raf);}});}).observe(sec);}
+  else{running=true;raf=requestAnimationFrame(frame);}
+  frame(0);
+
+  /* сканер линейки */
+  var P=[
+    {n:'Creatine Monohydrate',ru:'Креатин моногидрат',tags:['Strength','Energy','Recovery'],pack:'300 г · 50 порций',price:'1 550 ₽',b:[24.6,16.8,59.2,60.6]},
+    {n:'Vitamin D3+K2',ru:'Витамин D3 + K2',tags:['2000 ME','50 MCG'],pack:'120 капсул',price:'1 090 ₽',b:[62.4,21.0,82.4,61.6]},
+    {n:'L-Theanine',ru:'L-теанин',tags:['Motivation','Focus','Productivity'],pack:'120 капсул',price:'1 500 ₽',b:[8.4,50.4,29.4,90.8]},
+    {n:'Magnesium Glycinate',ru:'Магний глицинат + B6',tags:['+ Vitamin B6'],pack:'120 капсул',price:'1 280 ₽',b:[43.4,50.4,63.2,90.8]},
+    {n:'Taurine',ru:'Таурин',tags:['Heart','Metabolism','Liver'],pack:'120 капсул',price:'1 350 ₽',b:[71.6,50.4,91.8,90.8]}
+  ];
+  var lineup=document.getElementById('lineup'),target=document.getElementById('target'),lbl=document.getElementById('lensLbl'),plist=document.getElementById('plist'),spec=document.getElementById('spec');
+  plist.innerHTML=P.map(function(p,i){return '<button class="pbtn" type="button" id="pb'+i+'" data-i="'+i+'" aria-pressed="'+(i?'false':'true')+'"><span class="no">0'+(i+1)+'</span><span><b>'+p.n+'</b><span class="tags">'+p.tags.map(function(t){return '<span>'+t.toUpperCase()+'</span>'}).join('')+'</span></span><span class="pr">'+p.price+'</span></button>'}).join('');
+  var btns=[].slice.call(plist.children),ci=0,touched=false,timer=null;
+  function pick(i){ci=i;var p=P[i];
+    lineup.style.setProperty('--x1',p.b[0]+'%');lineup.style.setProperty('--y1',p.b[1]+'%');lineup.style.setProperty('--x2',p.b[2]+'%');lineup.style.setProperty('--y2',p.b[3]+'%');
+    btns.forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+    lbl.textContent='LOCK · 0'+(i+1);
+    target.classList.remove('scan');void target.offsetWidth;setTimeout(function(){target.classList.add('scan')},500);
+    spec.innerHTML='<div><span>ОБРАЗЕЦ</span><span>0'+(i+1)+' / 05</span></div><div><span>НАЗВАНИЕ</span><span>'+p.ru+'</span></div><div><span>ФАСОВКА</span><span>'+p.pack+'</span></div><div><span>ЦЕНА</span><span>'+p.price+'</span></div><div><span>СГР</span><span>есть</span></div>';}
+  btns.forEach(function(b,i){b.addEventListener('click',function(){touched=true;clearInterval(timer);pick(i)})});
+  pick(0);
+  if(!reduce&&'IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){clearInterval(timer);
+    if(e.isIntersecting&&!touched)timer=setInterval(function(){pick((ci+1)%P.length)},3200);})},{threshold:.35}).observe(lineup);}
+
+  /* браузер с макетами */
+  var tabs=[].slice.call(document.querySelectorAll('.b-tab')),panes=[].slice.call(document.querySelectorAll('.b-pane')),url=document.getElementById('bUrl'),browser=document.getElementById('browser');
+  var names=['главная','научная база','госрегистрация','подвал'],ti=0,ttimer=null,bt=false,DUR=6500;
+  function show(i){ti=i;tabs.forEach(function(t,j){t.setAttribute('aria-selected',j===i?'true':'false');t.tabIndex=j===i?0:-1;t.style.setProperty('--t',DUR+'ms')});
+    panes.forEach(function(p,j){p.classList.toggle('on',j===i);var im=p.querySelector('img');if(im){im.style.animation='none';void im.offsetWidth;im.style.animation='';}});url.textContent='mentorlabs · '+names[i];}
+  function auto(){clearInterval(ttimer);if(!bt&&!reduce)ttimer=setInterval(function(){show((ti+1)%tabs.length)},DUR);}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){bt=true;clearInterval(ttimer);browser.classList.add('paused');show(i)});
+    t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();var n=(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length;tabs[n].focus();tabs[n].click();}});});
+  show(0);
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){show(ti);auto();}else clearInterval(ttimer);})},{threshold:.3}).observe(browser);}
+
+  /* лупа на документе */
+  var doc=document.getElementById('doc'),lens=document.getElementById('lens'),dimg=doc.querySelector('img'),Z=2.6;
+  function lensAt(px,py){var w=doc.clientWidth,h=doc.clientHeight;lens.style.left=px*100+'%';lens.style.top=py*100+'%';
+    var lw=lens.offsetWidth;lens.style.backgroundImage='url('+dimg.currentSrc+')';lens.style.backgroundSize=(w*Z)+'px '+(h*Z)+'px';
+    lens.style.backgroundPosition=(-(px*w*Z-lw/2))+'px '+(-(py*h*Z-lw/2))+'px';}
+  function onMove(e){var r=doc.getBoundingClientRect();lensAt(clamp((e.clientX-r.left)/r.width,0,1),clamp((e.clientY-r.top)/r.height,0,1));}
+  doc.addEventListener('pointermove',onMove);doc.addEventListener('pointerdown',onMove);
+  function initLens(){lensAt(.5,.272);} if(dimg.complete)initLens();else dimg.addEventListener('load',initLens);addEventListener('resize',initLens);
+
+  /* ленты крутятся только на экране */
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('run',e.isIntersecting&&!reduce)})},{rootMargin:'120px 0px'});
+    [].forEach.call(document.querySelectorAll('.reel'),function(el){io.observe(el)});}
+})();
+</script>
+
+</body></html>
